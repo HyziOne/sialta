@@ -13,10 +13,21 @@ const Tab = createBottomTabNavigator();
 
 const HomeTabNavigator = (props) => {
   return (
-    <Tab.Navigator
-      tabBarOptions={{
-        activeTintColor: '#f15454',
-      }}>
+    <Tab.Navigator 
+        tabBarOptions={{
+        activeTintColor: '#EF4124',
+        inactiveTintColor: '#FFF',
+      }}
+      screenOptions={{
+        tabBarStyle: {
+          borderTopLeftRadius: 24,
+          borderTopRightRadius: 24,
+          backgroundColor: '#4AA5B0',
+          height: 70,
+          position: 'absolute',
+        }
+      }}
+      >
       <Tab.Screen
         name={'Sauvegarde'}
         component={HomeScreen}
