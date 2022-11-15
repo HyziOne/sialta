@@ -29,20 +29,11 @@ const HomeTabNavigator = (props) => {
       }}
       >
       <Tab.Screen
-        name={'Sauvegarde'}
-        component={HomeScreen}
-        options={{headerShown: false,
-          tabBarIcon: ({color}) => (
-            <FontAwesome name="heart-o" size={25} color={color} />
-          ),
-        }}
-      />
-      <Tab.Screen
         name={'Sialta'}
         component={MapScreen}
         options={{headerShown: false,
           tabBarIcon: ({color}) => (
-            <FontAwesome5 name="airbnb" size={25} color={color} />
+            <FontAwesome name="home" size={25} color={color} />
           ),
         }}
       />
@@ -51,7 +42,25 @@ const HomeTabNavigator = (props) => {
         component={DestinationSearch}
         options={{headerShown: false,
           tabBarIcon: ({color}) => (
-            <Feather name="message-square" size={25} color={color} />
+            <FontAwesome name="bell-o" size={25} color={color} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name={'Sauvegarde'}
+        component={HomeScreen}
+        options={{headerShown: false,
+          tabBarIcon: ({color}) => (
+            <FontAwesome name="heart-o" size={25} color={color} />
+          ),
+        }}
+      />      
+      <Tab.Screen
+        name={'Profil'}
+        component={DestinationSearch}
+        options={{headerShown: false,
+          tabBarIcon: ({color}) => (
+            <FontAwesome name="user-o" size={25} color={color} />
           ),
         }}
       />
