@@ -23,10 +23,15 @@ const HomeTabNavigator = (props) => {
           borderTopLeftRadius: 24,
           borderTopRightRadius: 24,
           backgroundColor: '#4AA5B0',
-          height: 70,
+          height: 80,
+          paddingTop: 10,
           position: 'absolute',
+        },
+        tabStyle: {
+          paddingTop: 100,
         }
       }}
+
       >
       <Tab.Screen
         name={'Sialta'}

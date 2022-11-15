@@ -23,7 +23,11 @@ const MapScreen = ({ navigation }) => {
                 }}
             />
              <GooglePlacesAutocomplete 
-                style={{width : '100%', height: '100%', position: 'relative'}}
+                style={{
+                    width : '100%', 
+                    height: '100%', 
+                    position: 'relative',
+                }}
                 placeholder='Recherche'
                 onPress={(data, details = null) => {
                     // 'details' is provided when fetchDetails = true
@@ -33,6 +37,7 @@ const MapScreen = ({ navigation }) => {
                     key: 'AIzaSyChyGfs7E5phymHzJZHg7W4gwFQAfKixQk',
                     language: 'fr',
                 }}
+                
             />
             
            
