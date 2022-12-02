@@ -32,6 +32,7 @@ import DestinationSearch from './src/screens/DestinationSearch';
 import SearchResultsPage from './src/screens/SearchResults';
 import MapScreen from './src/screens/MapScreen';
 import HomeTabNavigator from './src/navigation/HomeTabNavigator';
+import LoginScreen from './src/screens/Login/LoginScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -39,6 +40,7 @@ function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
+        {/* <Stack.Screen name={"Login"} component={LoginScreen} options={{headerShown: false,}}/> */}
         <Stack.Screen name={"home"} component={HomeTabNavigator} options={{headerShown: false,}}/>
         <Stack.Screen name="Destination" component={DestinationSearch} options={{ title: 'Destination' }}/>
         <Stack.Screen name="Search" component={SearchResultsPage} options={{ title: 'SearchResultsPage' }}/>

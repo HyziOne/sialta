@@ -7,6 +7,7 @@ import Feather from 'react-native-vector-icons/Feather';
 import MapScreen from '../screens/MapScreen';
 import HomeScreen from '../screens/home';
 import DestinationSearch from '../screens/DestinationSearch';
+import SettingsScreen from '../screens/Settings/SettingsScreen';
 
 
 const Tab = createBottomTabNavigator();
@@ -62,8 +63,9 @@ const HomeTabNavigator = (props) => {
       />      
       <Tab.Screen
         name={'Profil'}
-        component={DestinationSearch}
-        options={{headerShown: false,
+        component={SettingsScreen}
+        options={{
+          // headerShown: false,
           tabBarIcon: ({color}) => (
             <FontAwesome name="user-o" size={25} color={color} />
           ),
