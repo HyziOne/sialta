@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import { View, Text, Pressable, TextInput } from "react-native";
+import { View, Text, Pressable, TextInput, TouchableHighlight } from "react-native";
 // import MapView from 'react-native-maps';
 import styles from "./styles";
 import DestinationSearch from "../DestinationSearch";
@@ -47,24 +47,26 @@ const MapScreen = ({ navigation }) => {
                 />
               </Marker>
             </MapView>
-             <GooglePlacesAutocomplete 
-                style={{
-                    width : '100%', 
-                    height: '100%', 
-                    position: 'relative',
-                }}
-                placeholder='Recherche'
-                onPress={(data, details = null) => {
-                    // 'details' is provided when fetchDetails = true
-                    // console.log(data, details);
-                    // console.log("https://nominatim.openstreetmap.org/search?city=Inguiniel");
-                }}
-                query={{
-                    key: 'AIzaSyChyGfs7E5phymHzJZHg7W4gwFQAfKixQk',
-                    language: 'fr',
-                }}
-                
-            />
+            {/* <TouchableHighlight style={[styles.searchBar, { width : '80%',height: '100%', position: 'relative', }]}> */}
+                <GooglePlacesAutocomplete 
+                    style={{
+                        width : '80%', 
+                        height: '100%', 
+                        position: 'relative',
+                    }}
+                    placeholder='Recherche'
+                    onPress={(data, details = null) => {
+                        // 'details' is provided when fetchDetails = true
+                        // console.log(data, details);
+                        // console.log("https://nominatim.openstreetmap.org/search?city=Inguiniel");
+                    }}
+                    query={{
+                        key: 'AIzaSyChyGfs7E5phymHzJZHg7W4gwFQAfKixQk',
+                        language: 'fr',
+                    }}
+                    
+                />
+            {/* </TouchableHighlight> */}
  
            
             {/* <Fontisto style={styles.Searchbutton} name="search" size={25} color={"#000"}></Fontisto>
