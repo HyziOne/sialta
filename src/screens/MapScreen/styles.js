@@ -72,6 +72,49 @@ const styles = StyleSheet.create({
         paddingVertical: 0,
         paddingHorizontal: 0,
       },
+      button_modal: {
+        marginTop: 10,
+        paddingLeft: 10,
+        paddingRight: 10,
+        borderColor: '#EF4124',
+        borderRadius: 15,
+        backgroundColor: '#EF4124',
+        alignSelf: 'center',
+      },
+      txt_modal: {
+          color: '#FFF',
+          fontSize: 18,
+      },
+      search: {
+        position: 'absolute', 
+        top: 75, 
+        left: 20, 
+        right: 20, 
+        backgroundColor: '#FFF', 
+        width: '90%', 
+        padding: 15,
+        borderTopRightRadius: '15',
+        borderTopLeftRadius: '15',
+        borderBottomLeftRadius: '15',
+        borderBottomRightRadius: '15',
+        display: 'flex',
+        flexDirection: 'row',
+      }, 
+      backgroundModal: {
+        flex: 1, 
+        alignItems: 'center', 
+        justifyContent: 'center', 
+        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+      },
+      content_modal: {
+        backgroundColor: '#4AA5B0', 
+        padding: 20, 
+        color: '#FFF',
+        borderTopRightRadius: '15',
+        borderTopLeftRadius: '15',
+        borderBottomLeftRadius: '15',
+        borderBottomRightRadius: '15',
+      }
   
 });
 

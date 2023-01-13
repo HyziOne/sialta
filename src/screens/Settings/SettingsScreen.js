@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Text, Image, TouchableHighlight, View, StyleSheet, TextInput, SafeAreaView, Pressable } from 'react-native'
+import { useNavigation } from '@react-navigation/native';
 
 
 // class SettingsScreen extends Component {
@@ -7,6 +8,8 @@ const SettingsScreen = () => {
     const [text, onChangeOldPassword] = React.useState(null);
     const [textbis, onChangeNewPassword] = React.useState(null);
     const [textcheck, onChangeNewPasswordCheck] = React.useState(null);
+    const navigation = useNavigation();
+
     return (
         <SafeAreaView style={styles.container}>  
           <TouchableHighlight style={[styles.profileImgContainer, { justifyContent: 'center', alignItems: 'center', }]}>

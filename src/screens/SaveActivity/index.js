@@ -19,6 +19,8 @@ const SaveActivity = (props) => {
             />
             {/* <Image style={styles.img} source={require('/Users/sofiane/Documents/Master/Sialta/Sialta/assets/images/activites/runing 1.png')} /> */}
             {/* <Text>Bonjour</Text> */}
+            <Image style={styles.bottom_img} source={require('../../../assets/images/activites/runing_1.png')}/>
+
         </View>
     );
 };

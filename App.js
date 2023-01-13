@@ -45,7 +45,7 @@ function App() {
         <Stack.Screen name={"home"} component={HomeTabNavigator} options={{headerShown: false,}}/>
         <Stack.Screen name="Destination" component={DestinationSearch} options={{ title: 'Destination' }}/>
         <Stack.Screen name="Search" component={SaveActivity} options={{ title: 'SaveActivity' }}/>
-        <Stack.Screen name="MapScreen" component={MapScreen} options={{headerShown: false,}}/>
+        <Stack.Screen name="MapScreen" component={MapScreen} options={{headerShown: true,}}/>
       </Stack.Navigator>
     </NavigationContainer>
   );

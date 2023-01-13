@@ -11,6 +11,7 @@ import SettingsScreen from '../screens/Settings/SettingsScreen';
 import { PureComponent } from 'react/cjs/react.production.min';
 import PocMaker from '../screens/Poc';
 import SaveActivity from '../screens/SaveActivity';
+import MonPoc from '../screens/Poc';
 
 
 const Tab = createBottomTabNavigator();
@@ -49,7 +50,7 @@ const HomeTabNavigator = (props) => {
       <Tab.Screen
         name={'Messages'}
         // component={DestinationSearch}
-        component={PocMaker}
+        component={MonPoc}
         options={{headerShown: false,
           tabBarIcon: ({color}) => (
             <FontAwesome name="bell-o" size={25} color={color} />

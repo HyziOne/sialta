@@ -14,11 +14,15 @@ const styles = StyleSheet.create({
         marginTop: 30,
         fontSize: 35,
         color: '#1F2859',
-        fontWeight: '500',
+        fontWeight: '700',
       },
-    img: {
-        width: 300,
-        height: 300,
+      bottom_img: {
+        width: 200,
+        height: 200,
+        bottom: 70,
+        right: 20, 
+        position: 'absolute',
+        zIndex: -1,
     }
 });
 
