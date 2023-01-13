@@ -10,6 +10,7 @@ import MapView, { Marker } from 'react-native-maps';
 import { FontAwesome5 } from "@expo/vector-icons";
 import Localisation from 'react-native-geocoding';
 import SaveActivity from '../SaveActivity';
+import MapModal from "../../components/MapModal";
 
 Localisation.init("AIzaSyChyGfs7E5phymHzJZHg7W4gwFQAfKixQk");
 
@@ -60,7 +61,7 @@ const MapScreen = ({ navigation }) => {
         initialRegion={location}
         region={location}
       >
-        <Marker
+        {/* <Marker
           coordinate = {{
             latitude: 48.1113385,
             longitude: -1.6800198,
@@ -72,17 +73,9 @@ const MapScreen = ({ navigation }) => {
         <FontAwesome5
           name={"running"}
           size={26}
-          // style={{ 
-          //       color: "black", 
-          //       flex: 0.3,
-          //       backgroundColor: "red",
-          //       borderTopLeftRadius: 20,
-          //       borderTopRightRadius: 20,
-          //       borderBottomLeftRadius: 20,
-          //       padding: 10,
-          //   }}
         />
-      </Marker>
+      </Marker> */}
+      
       </MapView>
       <Modal
             animationType="slide"
@@ -127,6 +120,7 @@ const MapScreen = ({ navigation }) => {
 
             </View>
           </View>
+          <MapModal></MapModal>
         </View>
       </Modal>
       <View style={styles.search}>

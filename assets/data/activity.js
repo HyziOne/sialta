@@ -1,6 +1,6 @@
 export default [
     {
-      id: '0',
+      id: 0,
       image: '/Users/sofiane/Documents/Master/Sialta/Sialta/assets/images/activites/run-blanc-3.png',
       type: 'Course',
       rue: '12 rue de la Source',
@@ -9,7 +9,7 @@ export default [
       heure: '15h30',
     },
     {
-      id: '1',
+      id: 1,
       image: '/Users/sofiane/Documents/Master/Sialta/Sialta/assets/images/activites/foot-blanc 1.png',
       type: 'Football',
       rue: '1 Rue du stade',
@@ -18,7 +18,7 @@ export default [
       heure: '13h30',
     },
     {
-      id: '2',
+      id: 2,
       image: '/Users/sofiane/Documents/Master/Sialta/Sialta/assets/images/activites/alter-blanc 1.png',
       type: 'Musculation',
       rue: '17 Rue du menir',
@@ -27,7 +27,7 @@ export default [
       heure: '8h15',
     },
     {
-      id: '3',
+      id: 3,
       image: '/Users/sofiane/Documents/Master/Sialta/Sialta/assets/images/activites/alter-blanc 1.png',
       type: 'Musculation',
       rue: '17 Rue du menir',

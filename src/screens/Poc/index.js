@@ -56,49 +56,49 @@
 
 
 
-import React, { useState } from 'react';
-import { View, Text, Modal, TouchableHighlight } from 'react-native';
-import { Marker } from 'react-native-maps';
+// import React, { useState } from 'react';
+// import { View, Text, Modal, TouchableHighlight } from 'react-native';
+// import { Marker } from 'react-native-maps';
 
-const MonPoc = () => {
-  const [modalVisible, setModalVisible] = useState(false);
+// const MonPoc = () => {
+//   const [modalVisible, setModalVisible] = useState(false);
 
-  const showModal = () => {
-    setModalVisible(true);
-  }
+//   const showModal = () => {
+//     setModalVisible(true);
+//   }
 
-  const hideModal = () => {
-    setModalVisible(false);
-  }
+//   const hideModal = () => {
+//     setModalVisible(false);
+//   }
 
-  return (
-    <View>
-      <Marker
-        coordinate={{latitude: 37.78825, longitude: -122.4324}}
-        onPress={showModal}
-      />
-      <Modal
-        animationType="slide"
-        transparent={false}
-        visible={modalVisible}
-        onRequestClose={hideModal}
-      >
-        <View style={{marginTop: 22}}>
-          <View>
-            <Text>Hello World!</Text>
+//   return (
+//     <View>
+//       <Marker
+//         coordinate={{latitude: 37.78825, longitude: -122.4324}}
+//         onPress={showModal}
+//       />
+//       <Modal
+//         animationType="slide"
+//         transparent={false}
+//         visible={modalVisible}
+//         onRequestClose={hideModal}
+//       >
+//         <View style={{marginTop: 22}}>
+//           <View>
+//             <Text>Hello World!</Text>
 
-            <TouchableHighlight
-              onPress={hideModal}
-            >
-              <Text>Close</Text>
-            </TouchableHighlight>
-          </View>
-        </View>
-      </Modal>
-    </View>
-  );
-}
-export default MonPoc;
+//             <TouchableHighlight
+//               onPress={hideModal}
+//             >
+//               <Text>Close</Text>
+//             </TouchableHighlight>
+//           </View>
+//         </View>
+//       </Modal>
+//     </View>
+//   );
+// }
+// export default MonPoc;
 
 
 // import Localisation from 'react-native-geocoding';
@@ -152,3 +152,27 @@ export default MonPoc;
 // }
 
 // export default MapScreen;
+
+import React, { useState } from 'react';
+import { View, Text, Modal, TouchableHighlight, Button } from 'react-native';
+import { Marker } from 'react-native-maps';
+import data from '../../../assets/data/activity';
+
+const MonPoc = () => {
+  const [selected, setSelected] = useState(1);
+  
+
+  return (
+    <View style={{marginTop: 70}}>
+      {data.map(item => (
+        <Button
+          key={item.id}
+          title={item.type}
+          onPress={() => setSelected(item.id)}
+        />
+      ))}
+      <Text>Selected: {data.find(item => item.id === selected).type}</Text>
+    </View>
+  );
+}
+export default MonPoc;

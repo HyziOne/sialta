@@ -17,7 +17,7 @@ const Activity = (props) => {
 
     return (
         <View style={styles.screen}>
-            <TouchableOpacity onPress={() => navigation.navigate('SettingsScreen')}>
+            {/* <TouchableOpacity onPress={() => navigation.navigate('SettingsScreen')}> */}
                 <View style={styles.container}>
                     {/* <Image style={styles.image} source={require('../../../assets/images/wallpaper.jpeg')}></Image> */}
                     <View style={styles.image_side}>
@@ -34,7 +34,7 @@ const Activity = (props) => {
                         <Text style={styles.date} numberOfLines={2}>{post.description}</Text>
                     </View>
                 </View>
-            </TouchableOpacity>
+            {/* </TouchableOpacity> */}
         </View>
     );
 };

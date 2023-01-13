@@ -46,7 +46,8 @@ const SettingsScreen = () => {
               placeholder="Nouveau mot de passe"
               secureTextEntry={true}
           />
-          <Pressable style={styles.input}onPress={() => navigation.navigate('SettingsScreen')}>
+          {/* <Pressable style={styles.input}onPress={() => navigation.navigate('SettingsScreen')}> */}
+          <Pressable style={styles.input}>
               <Text style={styles.input_txt}>Reinitialiser</Text>
           </Pressable>            
         </SafeAreaView>
