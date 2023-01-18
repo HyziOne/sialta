@@ -81,8 +81,8 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
         paddingVertical: 0,
         paddingHorizontal: 0,
-      },
-      button_modal: {
+    },
+    button_modal: {
         marginTop: 10,
         paddingLeft: 10,
         paddingRight: 10,
@@ -90,12 +90,27 @@ const styles = StyleSheet.create({
         borderRadius: 15,
         backgroundColor: '#EF4124',
         alignSelf: 'center',
-      },
-      txt_modal: {
+    },
+    title_modal: {
+        color: '#FFF',
+        fontSize: 18,
+        fontWeight: '600',
+    },
+    txt_modal: {
           color: '#FFF',
           fontSize: 18,
-      },
-      search: {
+          fontWeight: '600',
+    },
+    txt_add: {
+        color: '#000',
+        padding: 15,
+        borderRadius: '15',
+        borderTopLeftRadius: '15',
+        borderBottomLeftRadius: '15',
+        borderBottomRightRadius: '15',
+        backgroundColor: '#FFF',
+    },
+    search: {
         position: 'absolute', 
         top: 75, 
         left: 20, 
@@ -109,14 +124,14 @@ const styles = StyleSheet.create({
         borderBottomRightRadius: '15',
         display: 'flex',
         flexDirection: 'row',
-      }, 
-      backgroundModal: {
+    }, 
+    backgroundModal: {
         flex: 1, 
         alignItems: 'center', 
         justifyContent: 'center', 
         backgroundColor: 'rgba(0, 0, 0, 0.5)',
-      },
-      content_modal: {
+    },
+    content_modal: {
         backgroundColor: '#4AA5B0', 
         padding: 20, 
         color: '#FFF',
@@ -124,7 +139,7 @@ const styles = StyleSheet.create({
         borderTopLeftRadius: '15',
         borderBottomLeftRadius: '15',
         borderBottomRightRadius: '15',
-      }
+    }
   
 });
 

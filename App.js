@@ -34,6 +34,8 @@ import MapScreen from './src/screens/MapScreen';
 import HomeTabNavigator from './src/navigation/HomeTabNavigator';
 import LoginScreen from './src/screens/Login/LoginScreen';
 import SaveActivity from './src/screens/SaveActivity';
+import MoreInformation from './src/screens/MoreInformation';
+import SettingsScreen from './src/screens/Settings/SettingsScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -46,6 +48,8 @@ function App() {
         <Stack.Screen name="Destination" component={DestinationSearch} options={{ title: 'Destination' }}/>
         <Stack.Screen name="Search" component={SaveActivity} options={{ title: 'SaveActivity' }}/>
         <Stack.Screen name="MapScreen" component={MapScreen} options={{headerShown: true,}}/>
+        <Stack.Screen name="MoreInformation" component={MoreInformation} options={{headerShown: true,}}/>
+        <Stack.Screen name="SettingsScreen" component={SettingsScreen} options={{headerShown: true,}}/>
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -90,31 +90,34 @@ const MapScreen = ({ navigation }) => {
             >
               <Text style={{alignSelf: 'flex-end', color: '#FFF', fontSize: 22}}>X</Text>
             </TouchableHighlight>
-            <Text style={styles.txt_modal}>Rendez vous de votre activité</Text>
+            <Text style={styles.title_modal}>Rendez vous de votre activité</Text>
             <Text style={styles.txt_modal}>Date et horaire</Text>
-            <TextInput
-              style={styles.input}
-            //   onChangeText={dateField}
-              value={date}
-              placeholder="13/05"
-              secureTextEntry={false}
-            />
-            <Text
-                style={styles.input}
-                // onChangeText={hourField}
-                // value={hour}
-                // placeholder="15h30"
-                // secureTextEntry={false}
-            >{hour}</Text>
+            <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+              <View style={styles.txt_add}>
+                <Text style={{width: 80, textAlign: 'center'}}>02/04/22</Text>
+              </View>
+              <View style={styles.txt_add}>
+                <Text style={{width: 80, textAlign: 'center'}}>15 : 30</Text>
+              </View>
+            </View>
             <Text style={styles.txt_modal}>Lieu</Text>
+            <View style={styles.txt_add}>
+              <Text>12 rue de la Source, RENNES 35000</Text>
+            </View>
             <Text style={styles.txt_modal}>Nombre de participants</Text>
-            <Text style={styles.txt_modal}>Niveau intermediaire</Text>
-            {/* <Button>Participer</Button> */}
+            
+            <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+              <View style={styles.txt_add}>
+                <Text style={{width: 30, textAlign: 'center'}}>5</Text>
+              </View>
+            </View>
+            
+            <Text style={{color:'#FFF', fontSize: 18, fontWeight: '600', textAlign: 'center'}}>Niveau intermediaire</Text>
             <View style={styles.button_modal}>
             <Button 
                 title="Participer"
                 color="#FFF"
-                // onPress={() => navigation.navigate('SaveActivity')}
+                onPress={() => navigation.navigate('Search')}
             />
 
 

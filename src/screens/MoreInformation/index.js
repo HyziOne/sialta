@@ -5,7 +5,6 @@ import styles from './styles';
 import { Entypo } from '@expo/vector-icons'; 
 import { useNavigation } from '@react-navigation/native';
 
-// const MoreInformation = () => {
 const MoreInformation = (props) => {
 
 // const MoreInformation = ({ navigation }) => { 

@@ -1,6 +1,6 @@
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-
+import { TouchableOpacity, Image} from "react-native";
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import Feather from 'react-native-vector-icons/Feather';
@@ -10,12 +10,16 @@ import DestinationSearch from '../screens/DestinationSearch';
 import SettingsScreen from '../screens/Settings/SettingsScreen';
 import { PureComponent } from 'react/cjs/react.production.min';
 import SaveActivity from '../screens/SaveActivity';
-import MonPoc from '../screens/MonPoc';
-
+import MoreInformation from '../screens/MoreInformation';
 
 const Tab = createBottomTabNavigator();
 
 const HomeTabNavigator = (props) => {
+  <TouchableOpacity
+      style={{marginTop: 10}}
+      onPress={() => props.onPress()}>
+      <FontAwesome name={props.iconName} size={25} color="#FFF" />
+    </TouchableOpacity>
   return (
     <Tab.Navigator 
         tabBarOptions={{
@@ -49,13 +53,47 @@ const HomeTabNavigator = (props) => {
       <Tab.Screen
         name={'Messages'}
         // component={DestinationSearch}
-        component={MonPoc}
+        component={MoreInformation}
         options={{headerShown: false,
           tabBarIcon: ({color}) => (
             <FontAwesome name="bell-o" size={25} color={color} />
           ),
         }}
       />
+      <Tab.Screen
+        name={' '}
+        showLabel={false}
+        component={DestinationSearch}
+        tabBarOptions={{
+          activeTintColor: '#000',
+          inactiveTintColor: '#FFF',
+        }}
+        options={{
+          headerShown: false,
+          // tabBarIcon: ({color}) => (
+            tabBarIcon: ({focused}) => (
+              <Image
+              style={{marginTop: -50}}
+              source={require('../../assets/images/Icons/More.png')}
+              />
+            // <FontAwesome5 name="bell-o" size={25} color={color} style={{marginTop: -50, backgroundColor: '#000', borderRadius: 30}}/>
+          ),
+        }}
+      />
+      {/* <Tab.Screen
+        name={'Test'}
+        component={DestinationSearch}
+        options={{
+          headerShown: false,
+          tabBarIcon: ({color}) => (
+            <FontAwesome5 name="bell-o" size={25} color={color} />
+          ),
+          tabBarButton: (props) => (
+            <CustomTabBarButton { ...props} iconName="bell-o" />
+          )
+        }}
+      /> */}
+
       <Tab.Screen
         name={'Sauvegarde'}
         component={SaveActivity}
