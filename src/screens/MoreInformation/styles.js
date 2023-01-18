@@ -4,9 +4,8 @@ import { Dimensions } from 'react-native';
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: '#E5E5E5',
+        backgroundColor: '#FFF9F0',
         height: '100%',
-        
     },
     heading: {
         textAlign: 'center',
@@ -16,14 +15,37 @@ const styles = StyleSheet.create({
         color: '#1F2859',
         fontWeight: '700',
       },
-      bottom_img: {
-        width: 200,
-        height: 200,
-        bottom: 70,
-        right: 20, 
-        position: 'absolute',
-        zIndex: -1,
-    }
+      subtitle: {
+        color: '#1F2859', 
+        marginLeft: 30, 
+        marginTop: 20, 
+        fontSize: 18, 
+        fontWeight: '600'
+      },
+      image:{
+          width: '50%',
+          height: '100%',
+          position: 'absolute',
+          left: '80%',
+          right: '50%',
+          top: 100,
+          zIndex: -1,
+          resizeMode:'contain',
+      },
+      run_img: {
+         width: 125, 
+         height: 125, 
+         transform: [{ scaleX: -1 }],
+         marginLeft: 30,
+      }, 
+      txt: {
+        color: '#1F2859', 
+        fontSize: 14,
+        marginLeft: 30,
+        width: 200, 
+        
+      }
+
 });
 
 

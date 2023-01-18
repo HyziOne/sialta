@@ -6,6 +6,7 @@ import HomeScreen from '../screens/home';
 import DestinationSearch from '../screens/DestinationSearch';
 import SearchResultsPage from '../screens/SearchResults';
 import MapScreen from '../screens/MapScreen';
+import MoreInformation from '../screens/MoreInformation';
 
 const Stack = createNativeStackNavigator();
 
@@ -17,6 +18,7 @@ function Router() {
         <Stack.Screen name="Destination" component={DestinationSearch} options={{ title: 'Destination' }}/>
         <Stack.Screen name="Search" component={SearchResultsPage} options={{ title: 'SearchResultsPage' }}/>
         <Stack.Screen name="MapScreen" component={MapScreen} options={{ title: 'MapScreen' }}/>
+        <Stack.Screen name="MoreInformation" component={MoreInformation} options={{ title: 'MoreInformation' }}/>
       </Stack.Navigator>
     </NavigationContainer>
   );

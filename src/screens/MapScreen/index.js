@@ -61,7 +61,7 @@ const MapScreen = ({ navigation }) => {
         initialRegion={location}
         region={location}
       >
-        {/* <Marker
+        <Marker
           coordinate = {{
             latitude: 48.1113385,
             longitude: -1.6800198,
@@ -74,7 +74,7 @@ const MapScreen = ({ navigation }) => {
           name={"running"}
           size={26}
         />
-      </Marker> */}
+      </Marker>
       
       </MapView>
       <Modal
@@ -99,13 +99,13 @@ const MapScreen = ({ navigation }) => {
               placeholder="13/05"
               secureTextEntry={false}
             />
-            <TextInput
+            <Text
                 style={styles.input}
                 // onChangeText={hourField}
-                value={hour}
-                placeholder="15h30"
-                secureTextEntry={false}
-            />
+                // value={hour}
+                // placeholder="15h30"
+                // secureTextEntry={false}
+            >{hour}</Text>
             <Text style={styles.txt_modal}>Lieu</Text>
             <Text style={styles.txt_modal}>Nombre de participants</Text>
             <Text style={styles.txt_modal}>Niveau intermediaire</Text>
@@ -120,7 +120,7 @@ const MapScreen = ({ navigation }) => {
 
             </View>
           </View>
-          <MapModal></MapModal>
+          {/* <MapModal></MapModal> */}
         </View>
       </Modal>
       <View style={styles.search}>

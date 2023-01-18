@@ -26,7 +26,8 @@ const SaveActivity = (props) => {
             <FlatList
                 data={activitys} 
                 renderItem={({ item }) =>  (
-                    <TouchableOpacity onPress={() => navigation.navigate('MoreInformation', { itemId: item.id })}>
+                    // <TouchableOpacity onPress={() => navigation.navigate('MoreInformation', { itemId: item.id })}>
+                    <TouchableOpacity onPress={() => navigation.navigate('MoreInformation')}>
                     {/* // <TouchableOpacity onPress={() => navigation.navigate('MapScreen', { itemId: item.id }}> */}
                     <Post post={item} />
                     </TouchableOpacity>

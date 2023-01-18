@@ -3,13 +3,9 @@ import { View, Text, Image, FlatList, ImageBackground } from 'react-native';
 import Lightbox from 'react-native-lightbox';
 import styles from './styles';
 import { Entypo } from '@expo/vector-icons'; 
-import { useNavigation } from '@react-navigation/native';
 
-// const MoreInformation = () => {
-const MoreInformation = (props) => {
-
-// const MoreInformation = ({ navigation }) => { 
-  const navigation = useNavigation();
+// const MonPoc = (props) => {
+const MonPoc = ({ navigation }) => {    
 
   const [isImageVisible, setIsImageVisible] = useState(false);
   const participants = [
@@ -88,4 +84,5 @@ const MoreInformation = (props) => {
     </View>
   );
 };
-export default MoreInformation;
+
+export default MonPoc;

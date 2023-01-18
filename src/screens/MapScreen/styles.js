@@ -24,6 +24,16 @@ const styles = StyleSheet.create({
         position: 'absolute',
         zIndex: 999,
     },
+    input: {
+        color: '#000',
+        padding: 15,
+        borderTopRightRadius: '15',
+        borderTopLeftRadius: '15',
+        borderBottomLeftRadius: '15',
+        borderBottomRightRadius: '15',
+        backgroundColor: '#FFF',
+
+    },
     textInputContainer: {
         flexDirection: 'row',
     },

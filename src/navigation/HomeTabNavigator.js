@@ -9,9 +9,8 @@ import HomeScreen from '../screens/home';
 import DestinationSearch from '../screens/DestinationSearch';
 import SettingsScreen from '../screens/Settings/SettingsScreen';
 import { PureComponent } from 'react/cjs/react.production.min';
-import PocMaker from '../screens/Poc';
 import SaveActivity from '../screens/SaveActivity';
-import MonPoc from '../screens/Poc';
+import MonPoc from '../screens/MonPoc';
 
 
 const Tab = createBottomTabNavigator();
@@ -20,7 +19,7 @@ const HomeTabNavigator = (props) => {
   return (
     <Tab.Navigator 
         tabBarOptions={{
-        activeTintColor: '#EF4124',
+        activeTintColor: '#000',
         inactiveTintColor: '#FFF',
       }}
       screenOptions={{
