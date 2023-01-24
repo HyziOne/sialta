@@ -11,6 +11,7 @@ import SettingsScreen from '../screens/Settings/SettingsScreen';
 import { PureComponent } from 'react/cjs/react.production.min';
 import SaveActivity from '../screens/SaveActivity';
 import MoreInformation from '../screens/MoreInformation';
+import AddEvents from '../screens/AddEvents';
 
 const Tab = createBottomTabNavigator();
 
@@ -63,7 +64,7 @@ const HomeTabNavigator = (props) => {
       <Tab.Screen
         name={' '}
         showLabel={false}
-        component={DestinationSearch}
+        component={AddEvents}
         tabBarOptions={{
           activeTintColor: '#000',
           inactiveTintColor: '#FFF',
