@@ -1,37 +1,39 @@
-import { StyleSheet } from 'react-native';
-import useWindowDimensions from 'react-native/Libraries/Utilities/useWindowDimensions';
-import { Dimensions } from 'react-native';
+import { StyleSheet } from "react-native";
+import useWindowDimensions from "react-native/Libraries/Utilities/useWindowDimensions";
+import { Dimensions } from "react-native";
 
 const styles = StyleSheet.create({
-    container:{
-        textAlign: 'center',
-        backgroundColor: '#1F2859',
-        color: '#FFF',
-        height: '100%',
-        paddingTop: 50,
-        paddingLeft: 20,
-        paddingRight: 20,
-    },
-    titre: {
-        color: '#FFF',
-        fontSize: 18,
-        fontWeight: '600',
-        textAlign: 'center',  
-    },
-    txt: {
-        color: '#FFF',
-        fontSize: 18,
-        fontWeight: '600',
-    },
-    txt_add: {
-        color: '#000',
-        padding: 15,
-        borderRadius: '15',
-        borderTopLeftRadius: '15',
-        borderBottomLeftRadius: '15',
-        borderBottomRightRadius: '15',
-        backgroundColor: '#FFF',
-    },
+  container: {
+    textAlign: "center",
+    backgroundColor: "#1F2859",
+    color: "#FFF",
+    height: "100%",
+    paddingTop: 50,
+    paddingLeft: 30,
+    paddingRight: 30,
+  },
+  titre: {
+    color: "#FFF",
+    fontSize: 20,
+    fontWeight: "800",
+    textAlign: "center",
+  },
+  txt: {
+    color: "#FFF",
+    fontSize: 18,
+    fontWeight: "600",
+    paddingBottom: 10,
+    paddingTop: 10,
+  },
+  txt_add: {
+    color: "#000",
+    padding: 15,
+    borderRadius: "15",
+    borderTopLeftRadius: "15",
+    borderBottomLeftRadius: "15",
+    borderBottomRightRadius: "15",
+    backgroundColor: "#FFF",
+  },
 });
 
 // const styles = StyleSheet.create({

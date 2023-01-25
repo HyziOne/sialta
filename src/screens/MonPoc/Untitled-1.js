@@ -1,10 +1,8 @@
-
-import Localisation from 'react-native-geocoding';
+import Localisation from "react-native-geocoding";
 Localisation.init("AIzaSyChyGfs7E5phymHzJZHg7W4gwFQAfKixQk");
 
-const MapScreen = ({ navigation }) => {    
-
-  const [searchTerm, setSearchTerm] = useState('');
+const MapScreen = ({ navigation }) => {
+  const [searchTerm, setSearchTerm] = useState("");
   const [location, setLocation] = useState({
     latitude: 37.78825,
     longitude: -122.4324,
@@ -30,14 +28,10 @@ const MapScreen = ({ navigation }) => {
 
   return (
     <View style={{ flex: 1 }}>
-      <MapView
-        style={{ flex: 1 }}
-        initialRegion={location}
-        region={location}
-      >
+      <MapView style={{ flex: 1 }} initialRegion={location} region={location}>
         <Marker coordinate={location} />
       </MapView>
-      <View style={{ position: 'absolute', top: 20, left: 20, right: 20 }}>
+      <View style={{ position: "absolute", top: 20, left: 20, right: 20 }}>
         <TextInput
           value={searchTerm}
           onChangeText={setSearchTerm}
@@ -47,6 +41,6 @@ const MapScreen = ({ navigation }) => {
       </View>
     </View>
   );
-}
+};
 
 export default MapScreen;

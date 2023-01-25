@@ -13,7 +13,7 @@ const firebaseConfig = {
   storageBucket: "sialta.appspot.com",
   messagingSenderId: "1080860096489",
   appId: "1:1080860096489:web:d6a15fe08adf8ca7763d78",
-  measurementId: "G-6RDVBZ76WL"
+  measurementId: "G-6RDVBZ76WL",
 };
 
 // Initialize Firebase

@@ -1,10 +1,8 @@
-import React, { useState } from 'react';
-import { View, Text, Button, Image } from 'react-native';
+import React, { useState } from "react";
+import { View, Text, Button, Image } from "react-native";
 // import Lightbox from 'react-native-lightbox';
 
-
 const MoreInformation = (props) => {
-
   return (
     <View>
       <Text>Information</Text>
@@ -24,6 +22,6 @@ const MoreInformation = (props) => {
       </Lightbox> */}
     </View>
   );
-}
+};
 
 export default MoreInformation;
