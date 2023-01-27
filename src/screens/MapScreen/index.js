@@ -91,15 +91,16 @@ const MapScreen = ({ navigation }) => {
           <Marker 
             key={doc.id}
             coordinate={{
-              longitude: doc.data().lat, 
-              longitude: doc.data().long 
+              latitude: doc.data().lat, 
+              longitude: doc.data().long,
             }}
             onPress={showModal}>
             <FontAwesome5 name={"running"} size={26} /> 
+            <Text>{doc.data().name}</Text>
           </Marker>
         );
-      console.log(doc.data().lat);
-      console.log(doc.data().long);
+      // console.log(doc.data().lat);
+      // console.log(doc.data().long);
       });
       setMarkers(markers);
     } catch (error) {
@@ -133,7 +134,7 @@ const MapScreen = ({ navigation }) => {
     <View style={{ flex: 1 }}>
       {/* {test()} */}
       <MapView style={{ flex: 1 }} initialRegion={location} region={location}>
-        <Marker
+        {/* <Marker
           coordinate={{
             latitude: 48.1113385,
             longitude: -1.6800198,
@@ -142,10 +143,9 @@ const MapScreen = ({ navigation }) => {
           }}
           onPress={showModal}
         >
-          {/* {test()} */}
 
           <FontAwesome5 name={"running"} size={26} />
-        </Marker>
+        </Marker> */}
         {markers}           
 
       </MapView>

@@ -13,14 +13,14 @@ const AddEvents = (props) => {
   const randomstring = require("randomstring");
   const navigation = useNavigation();
   const rdm = randomstring.generate(12);
-  const [long, setLong] = useState(''); 
   const [lat, setLat] = useState(''); 
+  const [long, setLong] = useState(''); 
   const [name, setName] = useState(''); 
 
   function CoordinateEvent () {
     setDoc(doc(db, "map", rdm), {
-      long: long,
       lat: lat,
+      long: long,
       name: name,
     }).then(() => { 
       // Data saved successfully!
@@ -61,8 +61,8 @@ const AddEvents = (props) => {
       <Text style={styles.txt}>Lieu</Text>
       <View style={styles.txt_add}>
         {/* <Text>12 rue de la Source, RENNES 35000</Text> */}
-        <TextInput placeholder={long} onChangeText={(long) =>setLong(long)} style={styles.textBoxes}></TextInput>
         <TextInput placeholder={lat} onChangeText={(lat) =>setLat(lat)} style={styles.textBoxes}></TextInput>
+        <TextInput placeholder={long} onChangeText={(long) =>setLong(long)} style={styles.textBoxes}></TextInput>
         <TextInput placeholder={name} onChangeText={(name) =>setName(data={value})} style={styles.textBoxes}></TextInput>
         <Button title="Publier" onPress={CoordinateEvent}/>
       </View>
