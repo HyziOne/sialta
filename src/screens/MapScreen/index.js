@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
   Text,
@@ -19,6 +19,8 @@ import { FontAwesome5 } from "@expo/vector-icons";
 import Localisation from "react-native-geocoding";
 import SaveActivity from "../SaveActivity";
 import MapModal from "../../components/MapModal";
+import { doc, setDoc, getDoc, onSnapshot, getFirestore, firestore, query, collection, where, getDocs } from "firebase/firestore"; 
+import { db } from "../../lib/firebase";
 
 Localisation.init("AIzaSyChyGfs7E5phymHzJZHg7W4gwFQAfKixQk");
 
@@ -62,8 +64,74 @@ const MapScreen = ({ navigation }) => {
     }
   };
 
+  // async function Search(){
+  //   const newMarkers = [];
+  //   const querySnapshot = await getDocs(collection(db, "map"));
+  //   querySnapshot.forEach((doc) => {
+  //     newMarkers.push(<Marker 
+  //       coordinate={{
+  //         longitude: doc.data().lat, 
+  //         longitude: doc.data().long 
+  //       }}onPress={showModal}>
+  //       <FontAwesome5 name={"running"} size={26} /> 
+  //     </Marker>);
+  //     return obj;
+  //   });
+  //   setMarkers(newMarkers);
+  // }
+
+  const [markers, setMarkers] = useState([]);
+
+  const AllMarkers = async () => {
+    try {
+      const querySnapshot = await getDocs(collection(db, "map"));
+      const markers = [];
+      querySnapshot.forEach((doc) => {
+        markers.push(
+          <Marker 
+            key={doc.id}
+            coordinate={{
+              longitude: doc.data().lat, 
+              longitude: doc.data().long 
+            }}
+            onPress={showModal}>
+            <FontAwesome5 name={"running"} size={26} /> 
+          </Marker>
+        );
+      console.log(doc.data().lat);
+      console.log(doc.data().long);
+      });
+      setMarkers(markers);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  
+  useEffect(() => {
+    AllMarkers();
+  }, []);
+  
+  useEffect(() => {
+    async function AllMarkers() {
+      const newMarkers = await Search();
+      setMarkers(newMarkers);
+    }
+    AllMarkers();
+  }, []);
+
+
+
+  function test(){
+    const myTag = <Text h1>Bonjour</Text>;
+    return myTag;
+  }
+
+  // useEffect(() => { //execute search function when screen load
+  //   Search();
+  // }, [])
   return (
     <View style={{ flex: 1 }}>
+      {/* {test()} */}
       <MapView style={{ flex: 1 }} initialRegion={location} region={location}>
         <Marker
           coordinate={{
@@ -74,8 +142,12 @@ const MapScreen = ({ navigation }) => {
           }}
           onPress={showModal}
         >
+          {/* {test()} */}
+
           <FontAwesome5 name={"running"} size={26} />
         </Marker>
+        {markers}           
+
       </MapView>
       <Modal
         animationType="slide"

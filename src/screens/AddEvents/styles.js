@@ -34,6 +34,14 @@ const styles = StyleSheet.create({
     borderBottomRightRadius: "15",
     backgroundColor: "#FFF",
   },
+  textBoxes: {
+    width: '90%', 
+    fontSize: 18,
+     padding: 12,
+      borderColor: 'gray', 
+    borderWidth: 0.2,
+     borderRadius: 10
+  },
 });
 
 // const styles = StyleSheet.create({

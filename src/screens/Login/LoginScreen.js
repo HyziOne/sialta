@@ -1,129 +1,84 @@
 import { useNavigation } from "@react-navigation/core";
-import React, { useEffect, useState } from "react";
-import {
-  KeyboardAvoidingView,
-  StyleSheet,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View,
-} from "react-native";
-import { auth } from "./firebase";
+import React, { useState, useEffect } from "react";
+import { StyleSheet, Text, TouchableOpacity, View, TextInput, Button } from "react-native";
+import { doc, setDoc, getDoc, onSnapshot, getFirestore, firestore, query, collection, where, getDocs } from "firebase/firestore"; 
 
-const LoginScreen = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+// import { getFirestore } from 'firebase/firestore/lite'
+import { db } from "../../lib/firebase";
+// import "firebase/firestore";
 
+
+
+const LoginScreen = (props) => {
+  const randomstring = require("randomstring");
   const navigation = useNavigation();
+  const rdm = randomstring.generate(12);
+  const [username, setName] = useState(''); 
+  const [email, setEmail] = useState(''); 
 
-  // useEffect(() => {
-  //   const unsubscribe = auth.onAuthStateChanged(user => {
-  //     if (user) {
-  //       navigation.replace("Home")
-  //     }
-  //   })
+  const db = getFirestore();
 
-  //   return unsubscribe
-  // }, [])
 
-  // const handleSignUp = () => {
-  //   auth
-  //     .createUserWithEmailAndPassword(email, password)
-  //     .then(userCredentials => {
-  //       const user = userCredentials.user;
-  //       console.log('Registered with:', user.email);
-  //     })
-  //     .catch(error => alert(error.message))
-  // }
+  // const unsub = onSnapshot(doc(db, "map", "Moi"), (doc) => {
+  //   console.log("Current data: ", doc.data());
+  // });
 
-  // const handleLogin = () => {
-  //   auth
-  //     .signInWithEmailAndPassword(email, password)
-  //     .then(userCredentials => {
-  //       const user = userCredentials.user;
-  //       console.log('Logged in with:', user.email);
-  //     })
-  //     .catch(error => alert(error.message))
-  // }
+  async function Search(){
+    // const querySnapshot = await getDocs(collection(db, "user"));
+    const querySnapshot = await getDocs(collection(db, "user"));
+    
+    querySnapshot.forEach((doc) => {
+      // doc.data() is never undefined for query doc snapshots
+      // console.log(doc.id, " => ", doc.data());
+      console.log(doc.data().username);
+    });
+  }
+
+  useEffect(() => { //execute search function when screen load
+    Search();
+  }, [])
+  
+  function AddUser() {
+    setDoc(doc(db, "user", rdm), {
+      username: username,
+      email: email,
+    }).then(() => { 
+      // Data saved successfully!
+      console.log('data submitted');  
+
+    }).catch((error) => {
+          // The write failed...
+          console.log(error);
+    });;
+  }
+
+  
+
 
   return (
-    <KeyboardAvoidingView style={styles.container} behavior="padding">
-      <View style={styles.inputContainer}>
-        <TextInput
-          placeholder="Email"
-          value={email}
-          onChangeText={(text) => setEmail(text)}
-          style={styles.input}
-        />
-        <TextInput
-          placeholder="Password"
-          value={password}
-          onChangeText={(text) => setPassword(text)}
-          style={styles.input}
-          secureTextEntry
-        />
-      </View>
-
-      <View style={styles.buttonContainer}>
-        <TouchableOpacity onPress={handleLogin} style={styles.button}>
-          <Text style={styles.buttonText}>Login</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={handleSignUp}
-          style={[styles.button, styles.buttonOutline]}
-        >
-          <Text style={styles.buttonOutlineText}>Register</Text>
-        </TouchableOpacity>
-      </View>
-    </KeyboardAvoidingView>
+    <View style={styles.container}>
+     <TextInput placeholder={username} onChangeText={(username) =>setName(username)} style={styles.textBoxes}></TextInput>
+      <TextInput placeholder={email} onChangeText={(email) =>setEmail(email)} style={styles.textBoxes}></TextInput>
+      <Button title="Test" onPress={AddUser}/>
+    </View>
   );
 };
 
 export default LoginScreen;
 
 const styles = StyleSheet.create({
-  container: {
+  container: {  
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
-  inputContainer: {
-    width: "80%",
-  },
-  input: {
-    backgroundColor: "white",
-    paddingHorizontal: 15,
-    paddingVertical: 10,
-    borderRadius: 10,
-    marginTop: 5,
-  },
-  buttonContainer: {
-    width: "60%",
-    justifyContent: "center",
-    alignItems: "center",
-    marginTop: 40,
-  },
-  button: {
-    backgroundColor: "#0782F9",
-    width: "100%",
-    padding: 15,
-    borderRadius: 10,
-    alignItems: "center",
-  },
-  buttonOutline: {
-    backgroundColor: "white",
-    marginTop: 5,
-    borderColor: "#0782F9",
-    borderWidth: 2,
-  },
-  buttonText: {
-    color: "white",
-    fontWeight: "700",
-    fontSize: 16,
-  },
-  buttonOutlineText: {
-    color: "#0782F9",
-    fontWeight: "700",
-    fontSize: 16,
-  },
+  textBoxes: {
+    width: '90%', 
+    fontSize: 18,
+     padding: 12,
+      borderColor: 'gray', 
+    borderWidth: 0.2,
+     borderRadius: 10
+  }   
 });

@@ -7,7 +7,7 @@ import {
   Button,
   StyleSheet,
 } from "react-native";
-import firebase from "firebase";
+// import firebase from "firebase";
 
 const Register = () => {
   const [name, setName] = useState("");
@@ -55,32 +55,32 @@ const Register = () => {
         date={dob}
         onDateChange={setDOB}
       />
-      <Button title="Register" onPress={handleRegister} />
+      {/* <Button title="Register" onPress={handleRegister} /> */}
     </View>
   );
 };
 
-const handleRegister = () => {
-  firebase
-    .auth()
-    .createUserWithEmailAndPassword(email, password)
-    .then((user) => {
-      // Ajouter les informations de l'utilisateur à la base de données
-      firebase
-        .database()
-        .ref(`users/${user.user.uid}`)
-        .set({
-          name,
-          firstName,
-          pseudo,
-          email,
-          dob,
-        })
-        .then(() => {
-          // Navigate to profile page
-        });
-    })
-    .catch((error) => {
-      console.error(error);
-    });
-};
+// const handleRegister = () => {
+//   firebase
+//     .auth()
+//     .createUserWithEmailAndPassword(email, password)
+//     .then((user) => {
+//       // Ajouter les informations de l'utilisateur à la base de données
+//       firebase
+//         .database()
+//         .ref(`users/${user.user.uid}`)
+//         .set({
+//           name,
+//           firstName,
+//           pseudo,
+//           email,
+//           dob,
+//         })
+//         .then(() => {
+//           // Navigate to profile page
+//         });
+//     })
+//     .catch((error) => {
+//       console.error(error);
+//     });
+// };

@@ -30,7 +30,7 @@ import DestinationSearch from "./src/screens/DestinationSearch";
 import SearchResultsPage from "./src/screens/SearchResults";
 import MapScreen from "./src/screens/MapScreen";
 import HomeTabNavigator from "./src/navigation/HomeTabNavigator";
-import LoginScreen from "./src/screens/Login/LoginScreen";
+// import LoginScreen from "./src/screens/Login/LoginScreen";
 import SaveActivity from "./src/screens/SaveActivity";
 import MoreInformation from "./src/screens/MoreInformation";
 import SettingsScreen from "./src/screens/Settings/SettingsScreen";
