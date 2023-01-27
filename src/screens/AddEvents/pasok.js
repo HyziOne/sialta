@@ -23,75 +23,60 @@ const rdm = randomstring.generate(12);
 const AddEvents = (props) => {
   const [selected, setSelected] = React.useState("");
   const navigation = useNavigation();
+  const [location, setLocation] = useState([]);
+
+
   const [lat, setLat] = useState("");
   const [long, setLong] = useState("");
   const [name, setName] = useState("");
 
   async function CoordinateEvent() {
+    const response = await Localisation.from(name);
+
+    const firstResult = response.results[0];
+    const location = firstResult.geometry.location;
+    console.log(location);
+
     await setDoc(doc(db, "map", rdm), {
-      lat: lat,
-      long: long,
+      lat: location.lat,
+      long: location.long,
       name: name,
     });
   }
-  const data = [
-    { key: "1", value: "Course" },
-    { key: "2", value: "Musculation" },
-    { key: "3", value: "Football" },
-  ];
-
-  // const [searchTerm, setSearchTerm] = useState("");
-  // const [location, setLocation] = useState({
-  //   latitude: 48.1113387,
-  //   longitude: -1.6800198,
-  // });
 
   // const handleSearch = async () => {
   //   try {
   //     const response = await Localisation.from(searchTerm);
   //     const firstResult = response.results[0];
   //     const location = firstResult.geometry.location;
-  //     console.log(location);
-  //     setLocation({
-  //       latitude: location.lat,
-  //       longitude: location.lng,
-  //     });
+  //     // console.log(location);
+  //     setLocation([location.lat, location.lng]);
+  //     setLatLocation([location.lat]);
+  //     setLongLocation([location.lng]);
   //   } catch (error) {
   //     console.log(error);
   //   }
   // };
 
-  const [searchTerm, setSearchTerm] = useState("");
-  const [location, setLocation] = useState([48.1113387, -1.6800198]);
-  const [locationLat, setLatLocation] = useState([48.1113387]);
-  const [locationLong, setLongLocation] = useState([-1.6800198]);
 
-  const handleSearch = async () => {
-    try {
-      const response = await Localisation.from(searchTerm);
-      const firstResult = response.results[0];
-      const location = firstResult.geometry.location;
-      // console.log(location);
-      setLocation([location.lat, location.lng]);
-      setLatLocation([location.lat]);
-      setLongLocation([location.lng]);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  const data = [
+    { key: "1", value: "Course" },
+    { key: "2", value: "Musculation" },
+    { key: "3", value: "Football" },
+  ];
+ 
 
   return (
     <View style={styles.container}>
       <Text style={styles.titre}>Créer ton evenement</Text>
       <Text>{location.lng}</Text>
       <Text style={styles.txt}>Ton sport</Text>
+      <Text style={styles.txt}>{location}</Text>
       <SelectList
         setSelected={(val) => setSelected(val)}
         data={data}
         save="value"
       />
-      <Text style={styles.txt}>{locationLat}</Text>
-      <Text style={styles.txt}>{locationLong}</Text>
 
       <Text style={styles.txt}>Date et horaire</Text>
 
@@ -104,20 +89,10 @@ const AddEvents = (props) => {
         </View>
       </View>
       <Text style={styles.txt}>Lieu</Text>
-      {/* <Text style={styles.txt}>{location}</Text> */}
       <View style={styles.txt_add}>
-        {/* <Text>12 rue de la Source, RENNES 35000</Text> */}
-        <TextInput placeholder={lat} onChangeText={(lat) =>setLat(lat)} style={styles.textBoxes}></TextInput>
-        <TextInput placeholder={long} onChangeText={(long) =>setLong(long)} style={styles.textBoxes}></TextInput>
-        <TextInput placeholder={name} onChangeText={(name) =>setName(data={value})} style={styles.textBoxes}></TextInput>
+        <TextInput placeholder={name} onChangeText={setName} style={styles.textBoxes}></TextInput>
 
         <Button title="Publier" onPress={CoordinateEvent} />
-        <TextInput
-          value={searchTerm}
-          onChangeText={setSearchTerm}
-          onSubmitEditing={handleSearch}
-          placeholder="Recherche"
-        />
       </View>
       <Text style={styles.txt}>Nombre de participants</Text>
     </View>

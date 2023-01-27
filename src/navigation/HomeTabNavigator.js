@@ -12,6 +12,8 @@ import { PureComponent } from "react/cjs/react.production.min";
 import SaveActivity from "../screens/SaveActivity";
 import MoreInformation from "../screens/MoreInformation";
 import AddEvents from "../screens/AddEvents";
+import Login from "../screens/Login";
+import LoginScreen from "../screens/Login/LoginScreen.js";
 
 const Tab = createBottomTabNavigator();
 
@@ -106,7 +108,7 @@ const HomeTabNavigator = (props) => {
       />
       <Tab.Screen
         name={"Profil"}
-        component={SettingsScreen}
+        component={LoginScreen}
         options={{
           headerShown: false,
           tabBarIcon: ({ color }) => (

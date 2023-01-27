@@ -38,7 +38,7 @@ const MapScreen = ({ navigation }) => {
   const hideModal = () => {
     setModalVisible(false);
   };
-  const [inputText, setInputText] = useState(MapScreen.initialState);
+  // const [inputText, setInputText] = useState(MapScreen.initialState);
   const [searchTerm, setSearchTerm] = useState("");
   const [location, setLocation] = useState({
     latitude: 48.1113387,
