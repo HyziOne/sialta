@@ -91,8 +91,8 @@ const MapScreen = ({ navigation }) => {
           <Marker 
             key={doc.id}
             coordinate={{
-              latitude: doc.data().lat, 
-              longitude: doc.data().long,
+              latitude: doc.data().geoloc.lat, 
+              longitude: doc.data().geoloc.lng,
             }}
             onPress={showModal}>
             <FontAwesome5 name={"running"} size={26} /> 
