@@ -87,6 +87,18 @@ const MapScreen = ({ navigation }) => {
       const querySnapshot = await getDocs(collection(db, "map"));
       const markers = [];
       querySnapshot.forEach((doc) => {
+      let iconMarker = "";
+      if(doc.data().activity == "Course"){
+        iconMarker = "running";
+      }
+      else if(doc.data().activity == "Musculation"){
+        iconMarker = "dumbbell";
+      }
+      else if(doc.data().activity == "Football"){
+        iconMarker = "futbol";
+      }else{
+        iconMarker = "user-friends";
+      }
         markers.push(
           <Marker 
             key={doc.id}
@@ -95,8 +107,9 @@ const MapScreen = ({ navigation }) => {
               longitude: doc.data().geoloc.lng,
             }}
             onPress={showModal}>
-            <FontAwesome5 name={"running"} size={26} /> 
-            <Text>{doc.data().name}</Text>
+              <View style={{maxWidth: 50,borderTopLeftRadius: 15, borderTopRightRadius: 15, borderBottomRightRadius: 70, borderBottomLeftRadius: 70, padding: 10, paddingBottom: 20, backgroundColor: '#FFF'}}>
+                  <FontAwesome5 name={iconMarker} size={26} /> 
+              </View>
           </Marker>
         );
       // console.log(doc.data().lat);

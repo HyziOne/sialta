@@ -31,6 +31,9 @@ const AddEvents = (props) => {
   const [long, setLong] = useState("");
   const [name, setName] = useState("");
   const [activity, setActivity] = useState("");
+  const [date, setDate] = useState("");
+  const [hour, setHour] = useState("");
+  const [max, setMax] = useState("");
 
   async function CoordinateEvent() {
     const response = await Localisation.from(name);
@@ -44,6 +47,9 @@ const AddEvents = (props) => {
       geoloc: location,
       name: name,
       activity: activity,
+      date: date,
+      hour: hour,
+      max: max,
     });
   }
 
@@ -62,7 +68,8 @@ const AddEvents = (props) => {
       <Text style={styles.txt}>{location}</Text>
       <View style={{backgroundColor: "#FFF", borderRadius: 10 }}>
         <SelectList
-            setSelected={(val) => setSelected(val)}
+            // setSelected={(val) => setSelected(val)}
+            setSelected={(val) => setActivity(val)}
             data={data}
             save="value"
             arrowicon={<FontAwesome name="chevron-down" size={12} color={'#000'} />} 
@@ -72,13 +79,14 @@ const AddEvents = (props) => {
       </View>
 
       <Text style={styles.txt}>Date et horaire</Text>
+      {/* <TextInput placeholder={lat} onChangeText={(lat) =>setLat(lat)} style={styles.textBoxes}></TextInput> */}
 
       <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
         <View style={styles.txt_add}>
-          <Text style={{ width: 80, textAlign: "center" }}>02/04/22</Text>
+          <TextInput placeholder="Date" onChangeText={setDate} style={{ width: 80, textAlign: "center" }}></TextInput>
         </View>
         <View style={styles.txt_add}>
-          <Text style={{ width: 80, textAlign: "center" }}>15 : 30</Text>
+          <TextInput placeholder="Horaire" onChangeText={setHour} style={{ width: 80, textAlign: "center" }}></TextInput>
         </View>
       </View>
       <Text style={styles.txt}>Lieu</Text>
@@ -87,7 +95,8 @@ const AddEvents = (props) => {
 
         <Button title="Publier" onPress={CoordinateEvent} />
       </View>
-      <Text style={styles.txt}>Nombre de participants</Text>
+        <Text style={styles.txt}>Nombre de participants</Text>
+        <TextInput placeholder={max} onChangeText={setMax} style={styles.txt_add}></TextInput>
     </View>
   );
 };

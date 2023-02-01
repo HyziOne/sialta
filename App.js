@@ -22,7 +22,7 @@
 // }
 
 import React from "react";
-import { View, Text } from "react-native";
+import { View, Text, LogBox } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import HomeScreen from "./src/screens/home";
@@ -34,6 +34,8 @@ import HomeTabNavigator from "./src/navigation/HomeTabNavigator";
 import SaveActivity from "./src/screens/SaveActivity";
 import MoreInformation from "./src/screens/MoreInformation";
 import SettingsScreen from "./src/screens/Settings/SettingsScreen";
+LogBox.ignoreLogs(['Warning: ...']); // Ignore log notification by message
+LogBox.ignoreAllLogs();//Ignore all log notifications
 
 const Stack = createNativeStackNavigator();
 
