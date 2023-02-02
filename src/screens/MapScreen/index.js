@@ -19,8 +19,20 @@ import { FontAwesome5 } from "@expo/vector-icons";
 import Localisation from "react-native-geocoding";
 import SaveActivity from "../SaveActivity";
 import MapModal from "../../components/MapModal";
-import { doc, setDoc, getDoc, onSnapshot, getFirestore, firestore, query, collection, where, getDocs } from "firebase/firestore"; 
+import {
+  doc,
+  setDoc,
+  getDoc,
+  onSnapshot,
+  getFirestore,
+  firestore,
+  query,
+  collection,
+  where,
+  getDocs,
+} from "firebase/firestore";
 import { db } from "../../lib/firebase";
+import { async, stringify } from "@firebase/util";
 
 Localisation.init("AIzaSyChyGfs7E5phymHzJZHg7W4gwFQAfKixQk");
 
@@ -28,10 +40,14 @@ const MapScreen = ({ navigation }) => {
   const [date, dateField] = React.useState(null);
   const [hour, hourField] = React.useState(null);
   const [data, dataField] = React.useState(null);
+  const [docIdModal, setDocId] = React.useState(null);
+  const [dataModal, setDataModal] = React.useState(null);
 
   const [modalVisible, setModalVisible] = useState(false);
 
-  const showModal = () => {
+  const showModal = (docId) => {
+    setDocId(docId);
+    // console.log(docId);
     setModalVisible(true);
   };
 
@@ -68,12 +84,12 @@ const MapScreen = ({ navigation }) => {
   //   const newMarkers = [];
   //   const querySnapshot = await getDocs(collection(db, "map"));
   //   querySnapshot.forEach((doc) => {
-  //     newMarkers.push(<Marker 
+  //     newMarkers.push(<Marker
   //       coordinate={{
-  //         longitude: doc.data().lat, 
-  //         longitude: doc.data().long 
+  //         longitude: doc.data().lat,
+  //         longitude: doc.data().long
   //       }}onPress={showModal}>
-  //       <FontAwesome5 name={"running"} size={26} /> 
+  //       <FontAwesome5 name={"running"} size={26} />
   //     </Marker>);
   //     return obj;
   //   });
@@ -87,44 +103,54 @@ const MapScreen = ({ navigation }) => {
       const querySnapshot = await getDocs(collection(db, "map"));
       const markers = [];
       querySnapshot.forEach((doc) => {
-      let iconMarker = "";
-      if(doc.data().activity == "Course"){
-        iconMarker = "running";
-      }
-      else if(doc.data().activity == "Musculation"){
-        iconMarker = "dumbbell";
-      }
-      else if(doc.data().activity == "Football"){
-        iconMarker = "futbol";
-      }else{
-        iconMarker = "user-friends";
-      }
+        let iconMarker = "";
+        if (doc.data().activity == "Course") {
+          iconMarker = "running";
+        } else if (doc.data().activity == "Musculation") {
+          iconMarker = "dumbbell";
+        } else if (doc.data().activity == "Football") {
+          iconMarker = "futbol";
+        } else {
+          iconMarker = "user-friends";
+        }
         markers.push(
-          <Marker 
+          <Marker
             key={doc.id}
             coordinate={{
-              latitude: doc.data().geoloc.lat, 
+              latitude: doc.data().geoloc.lat,
               longitude: doc.data().geoloc.lng,
             }}
-            onPress={showModal}>
-              <View style={{maxWidth: 50,borderTopLeftRadius: 15, borderTopRightRadius: 15, borderBottomRightRadius: 70, borderBottomLeftRadius: 70, padding: 10, paddingBottom: 20, backgroundColor: '#FFF'}}>
-                  <FontAwesome5 name={iconMarker} size={26} /> 
-              </View>
+            onPress={() => showModal(doc.id)}
+          >
+            <View
+              style={{
+                maxWidth: 50,
+                borderTopLeftRadius: 15,
+                borderTopRightRadius: 15,
+                borderBottomRightRadius: 70,
+                borderBottomLeftRadius: 70,
+                padding: 10,
+                paddingBottom: 20,
+                backgroundColor: "#FFF",
+              }}
+            >
+              <FontAwesome5 name={iconMarker} size={26} />
+            </View>
           </Marker>
         );
-      // console.log(doc.data().lat);
-      // console.log(doc.data().long);
+        // console.log(doc.data().lat);
+        // console.log(doc.data().long);
       });
       setMarkers(markers);
     } catch (error) {
       console.log(error);
     }
-  }
-  
+  };
+
   useEffect(() => {
     AllMarkers();
   }, []);
-  
+
   useEffect(() => {
     async function AllMarkers() {
       const newMarkers = await Search();
@@ -133,99 +159,104 @@ const MapScreen = ({ navigation }) => {
     AllMarkers();
   }, []);
 
+  useEffect(() => {
+    async function getDocData() {
+      const c = collection(db, "map");
+      const modalDoc = doc(c, docIdModal);
+      const document = await getDoc(modalDoc);
+      const data = document.data();
+      setDataModal(data);
+      const jsonDoc = JSON.stringify(data);
+    }
+    getDocData();
+  }, [docIdModal]);
 
-
-  function test(){
+  function test() {
     const myTag = <Text h1>Bonjour</Text>;
     return myTag;
   }
 
-  // useEffect(() => { //execute search function when screen load
-  //   Search();
-  // }, [])
   return (
     <View style={{ flex: 1 }}>
-      {/* {test()} */}
       <MapView style={{ flex: 1 }} initialRegion={location} region={location}>
-        {/* <Marker
-          coordinate={{
-            latitude: 48.1113385,
-            longitude: -1.6800198,
-            latitudeDelta: 0.0922,
-            longitudeDelta: 0.0421,
-          }}
-          onPress={showModal}
-        >
-
-          <FontAwesome5 name={"running"} size={26} />
-        </Marker> */}
-        {markers}           
-
+        {markers}
       </MapView>
-      <Modal
-        animationType="slide"
-        transparent={true}
-        visible={modalVisible}
-        onRequestClose={hideModal}
-      >
-        <View style={styles.backgroundModal}>
-          <View style={styles.content_modal}>
-            <TouchableHighlight onPress={hideModal}>
-              <Text
-                style={{ alignSelf: "flex-end", color: "#FFF", fontSize: 22 }}
-              >
-                X
+      {!!dataModal && (
+        <Modal
+          animationType="slide"
+          transparent={true}
+          visible={modalVisible}
+          onRequestClose={hideModal}
+        >
+          <View style={styles.backgroundModal}>
+            <View style={styles.content_modal}>
+              <TouchableHighlight onPress={hideModal}>
+                <Text
+                  style={{ alignSelf: "flex-end", color: "#FFF", fontSize: 22 }}
+                >
+                  X
+                </Text>
+              </TouchableHighlight>
+              <Text style={styles.title_modal}>
+                Rendez vous de votre activité
               </Text>
-            </TouchableHighlight>
-            <Text style={styles.title_modal}>
-              Rendez vous de votre activité
-            </Text>
-            <Text style={styles.txt_modal}>Date et horaire</Text>
-            <View
-              style={{ flexDirection: "row", justifyContent: "space-between" }}
-            >
-              <View style={styles.txt_add}>
-                <Text style={{ width: 80, textAlign: "center" }}>02/04/22</Text>
+              <Text style={styles.txt_modal}>Date et horaire</Text>
+              <View
+                style={{
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                }}
+              >
+                <View style={styles.txt_add}>
+                  <Text style={{ width: 80, textAlign: "center" }}>
+                    {dataModal.date}
+                  </Text>
+                </View>
+                <View style={styles.txt_add}>
+                  <Text style={{ width: 80, textAlign: "center" }}>
+                    {dataModal.hour}
+                  </Text>
+                </View>
               </View>
+              <Text style={styles.txt_modal}>Lieu</Text>
               <View style={styles.txt_add}>
-                <Text style={{ width: 80, textAlign: "center" }}>15 : 30</Text>
+                <Text>{dataModal.name}</Text>
               </View>
-            </View>
-            <Text style={styles.txt_modal}>Lieu</Text>
-            <View style={styles.txt_add}>
-              <Text>12 rue de la Source, RENNES 35000</Text>
-            </View>
-            <Text style={styles.txt_modal}>Nombre de participants</Text>
+              <Text style={styles.txt_modal}>Nombre de participants</Text>
 
-            <View
-              style={{ flexDirection: "row", justifyContent: "space-between" }}
-            >
-              <View style={styles.txt_add}>
-                <Text style={{ width: 30, textAlign: "center" }}>5</Text>
+              <View
+                style={{
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                }}
+              >
+                <View style={styles.txt_add}>
+                  <Text style={{ width: 30, textAlign: "center" }}>{dataModal.max}</Text>
+                </View>
+              </View>
+
+              <Text
+                style={{
+                  color: "#FFF",
+                  fontSize: 18,
+                  fontWeight: "600",
+                  textAlign: "center",
+                }}
+              >
+                Niveau intermediaire
+              </Text>
+              <View style={styles.button_modal}>
+                <Button
+                  title="Participer"
+                  color="#FFF"
+                  onPress={() => navigation.navigate("Search")}
+                />
               </View>
             </View>
-
-            <Text
-              style={{
-                color: "#FFF",
-                fontSize: 18,
-                fontWeight: "600",
-                textAlign: "center",
-              }}
-            >
-              Niveau intermediaire
-            </Text>
-            <View style={styles.button_modal}>
-              <Button
-                title="Participer"
-                color="#FFF"
-                onPress={() => navigation.navigate("Search")}
-              />
-            </View>
+            {/* <MapModal></MapModal> */}
           </View>
-          {/* <MapModal></MapModal> */}
-        </View>
-      </Modal>
+        </Modal>
+      )}
       <View style={styles.search}>
         <FontAwesome5
           name={"search"}
