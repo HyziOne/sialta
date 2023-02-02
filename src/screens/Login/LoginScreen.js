@@ -1,84 +1,140 @@
-import { useNavigation } from "@react-navigation/core";
-import React, { useState, useEffect } from "react";
-import { StyleSheet, Text, TouchableOpacity, View, TextInput, Button } from "react-native";
-import { doc, setDoc, getDoc, onSnapshot, getFirestore, firestore, query, collection, where, getDocs } from "firebase/firestore"; 
+import React from "react";
+import Icon from "@expo/vector-icons/MaterialCommunityIcons";
+import SignUpScreen from "../Signup";
 
-// import { getFirestore } from 'firebase/firestore/lite'
-import { db } from "../../lib/firebase";
-// import "firebase/firestore";
+import {
+  Image,
+  Pressable,
+  StyleSheet,
+  TextInput,
+  Text,
+  View,
+  ImageBackground,
+} from "react-native";
+//import Icon from 'react-native-vector-icons/FontAwesome';
+import { StackScreenProps } from "@react-navigation/stack";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 
+const auth = getAuth();
 
+function LoginScreen({ navigation }) {
+  const [value, setValue] = React.useState({
+    email: "",
+    password: "",
+    error: "",
+  });
 
-const LoginScreen = (props) => {
-  const randomstring = require("randomstring");
-  const navigation = useNavigation();
-  const rdm = randomstring.generate(12);
-  const [username, setName] = useState(''); 
-  const [email, setEmail] = useState(''); 
+  async function signIn() {
+    if (value.email === "" || value.password === "") {
+      setValue({
+        ...value,
+        error: "Email and password are mandatory.",
+      });
+      return;
+    }
 
-  const db = getFirestore();
-
-
-  // const unsub = onSnapshot(doc(db, "map", "Moi"), (doc) => {
-  //   console.log("Current data: ", doc.data());
-  // });
-
-  async function Search(){
-    // const querySnapshot = await getDocs(collection(db, "user"));
-    const querySnapshot = await getDocs(collection(db, "user"));
-    
-    querySnapshot.forEach((doc) => {
-      // doc.data() is never undefined for query doc snapshots
-      // console.log(doc.id, " => ", doc.data());
-      console.log(doc.data().username);
-    });
+    try {
+      await signInWithEmailAndPassword(auth, value.email, value.password);
+      console.log("good");
+      navigation.navigate("MapScreen");
+    } catch (error) {
+      alert("Veuillez réessayer");
+      console.log("not good");
+      setValue({
+        ...value,
+        error: error.message,
+      });
+    }
   }
-
-  useEffect(() => { //execute search function when screen load
-    Search();
-  }, [])
-  
-  function AddUser() {
-    setDoc(doc(db, "user", rdm), {
-      username: username,
-      email: email,
-    }).then(() => { 
-      // Data saved successfully!
-      console.log('data submitted');  
-
-    }).catch((error) => {
-          // The write failed...
-          console.log(error);
-    });;
-  }
-
-  
-
 
   return (
-    <View style={styles.container}>
-     <TextInput placeholder={username} onChangeText={(username) =>setName(username)} style={styles.textBoxes}></TextInput>
-      <TextInput placeholder={email} onChangeText={(email) =>setEmail(email)} style={styles.textBoxes}></TextInput>
-      <Button title="Test" onPress={AddUser}/>
+    <View style={{ backgroundColor: "#FFF9F0", height: "100%" }}>
+      <ImageBackground
+        source={require("../../../assets/images/login/Header_login.png")}
+        style={{
+          width: "100%",
+          height: 700,
+          resizeMode: "cover",
+          position: "absolute",
+        }}
+      />
+      <View
+        style={{
+          position: "relative",
+          marginTop: 350,
+          paddingLeft: 50,
+          paddingRight: 50,
+        }}
+      >
+        <Text style={{ color: "#1F2859", fontSize: 30, fontWeight: "600" }}>
+          Connexion
+        </Text>
+        <View>
+          <View>
+            <View>
+              <Text style={{color: '#1F2859'}}>Adresse mail</Text>
+              <TextInput
+                // placeholder="Email"
+                value={value.email}
+                onChangeText={(text) => setValue({ ...value, email: text })}
+                style={{ padding: 5,
+                  borderColor: '#1F2859',
+                  borderWidth: 1,
+                  borderStyle: 'solid',
+                  borderRadius: 15,
+                  marginTop: 5,
+                  marginBottom: 15}}
+              />
+            </View>
+
+            <View>
+              <Text style={{color: '#1F2859'}}>Mot de passe</Text>
+              <TextInput
+                // placeholder="Password"
+                onChangeText={(text) => setValue({ ...value, password: text })}
+                secureTextEntry={true}
+                style={{ padding: 5,
+                  borderColor: '#1F2859',
+                  borderWidth: 1,
+                  borderStyle: 'solid',
+                  borderRadius: 15,
+                  marginTop: 5}}
+              />
+            </View>
+          </View>
+          <Pressable style={{ backgroundColor: '#1F2859', color: '#FFF',  borderRadius: 20 }}>
+            <Text style={{color: '#FFF',paddingBottom: 5, paddingTop: 5, fontSize: 18, textAlign: 'center'}} onPress={signIn}>Connexion</Text>
+          </Pressable>
+        </View>
+        <Text style={{color: '#1F2859', fontSize: 18, textAlign:'right'}} onPress={() => navigation.navigate("SignUp")}>Inscription</Text>
+      </View>
+      <ImageBackground
+        source={require("../../../assets/images/login/Bottom_login.png")}
+        style={{
+          width: "100%",
+          height: 300,
+          resizeMode: "cover",
+          position: "absolute",
+          bottom: 0,
+        }}
+      />
     </View>
   );
-};
+}
 
 export default LoginScreen;
 
 const styles = StyleSheet.create({
-  container: {  
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+  icon: {
+    padding: 10,
   },
-  textBoxes: {
-    width: '90%', 
-    fontSize: 18,
-     padding: 12,
-      borderColor: 'gray', 
-    borderWidth: 0.2,
-     borderRadius: 10
-  }   
+  input: {
+    flex: 1,
+    paddingTop: 10,
+    paddingRight: 10,
+    paddingBottom: 10,
+    paddingLeft: 0,
+    backgroundColor: "#fff",
+    color: "#424242",
+  },
 });
