@@ -34,16 +34,21 @@ import HomeTabNavigator from "./src/navigation/HomeTabNavigator";
 import SaveActivity from "./src/screens/SaveActivity";
 import MoreInformation from "./src/screens/MoreInformation";
 import SettingsScreen from "./src/screens/Settings/SettingsScreen";
+import SignUpScreen from "./src/screens/Signup";
+import LoginScreen from "./src/screens/Login/LoginScreen";
 LogBox.ignoreLogs(['Warning: ...']); // Ignore log notification by message
 LogBox.ignoreAllLogs();//Ignore all log notifications
+import AuthNavigator from './src/navigation/AuthNavigator';
 
 const Stack = createNativeStackNavigator();
 
 function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
-        {/* <Stack.Screen name={"Login"} component={LoginScreen} options={{headerShown: false,}}/> */}
+        <AuthNavigator />
+
+      {/* <Stack.Navigator>
+        
         <Stack.Screen
           name={"home"}
           component={HomeTabNavigator}
@@ -62,7 +67,7 @@ function App() {
         <Stack.Screen
           name="MapScreen"
           component={MapScreen}
-          options={{ headerShown: true }}
+          options={{ headerShown: false }}
         />
         <Stack.Screen
           name="MoreInformation"
@@ -74,7 +79,7 @@ function App() {
           component={SettingsScreen}
           options={{ headerShown: true }}
         />
-      </Stack.Navigator>
+      </Stack.Navigator> */}
     </NavigationContainer>
   );
 }

@@ -14,8 +14,11 @@ import MoreInformation from "../screens/MoreInformation";
 import AddEvents from "../screens/AddEvents";
 import Login from "../screens/Login";
 import LoginScreen from "../screens/Login/LoginScreen.js";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { NavigationContainer } from "@react-navigation/native";
 
 const Tab = createBottomTabNavigator();
+const Stack = createNativeStackNavigator();
 
 const HomeTabNavigator = (props) => {
   <TouchableOpacity style={{ marginTop: 10 }} onPress={() => props.onPress()}>

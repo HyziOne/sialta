@@ -8,13 +8,32 @@ import SearchResultsPage from "../screens/SearchResults";
 import MapScreen from "../screens/MapScreen";
 import MoreInformation from "../screens/MoreInformation";
 import AddEvents from "../screens/AddEvents";
+import SignUpScreen from "../screens/Signup";
+import LoginScreen from "../screens/Login/LoginScreen";
+import HomeTabNavigator from "./HomeTabNavigator";
 
 const Stack = createNativeStackNavigator();
+const OldStack = createNativeStackNavigator();
 
 function Router() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
+      {/* <Stack.Screen
+          name="LoginScreen"
+          component={LoginScreen}
+          options={{ headerShown: true }}
+        />
+        <Stack.Screen
+          name="SignUp"
+          component={SignUpScreen}
+          options={{ headerShown: true }}
+        /> */}
+        <Stack.Screen
+          name="HomeTabNavigator"
+          component={HomeTabNavigator}
+          options={{ title: "HomeTabNavigator" }}
+        />
         <Stack.Screen
           name="home"
           component={HomeScreen}
