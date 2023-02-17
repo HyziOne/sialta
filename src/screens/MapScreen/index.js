@@ -7,6 +7,9 @@ import {
   Button,
   TouchableHighlight,
   Modal,
+  Image,
+  TouchableOpacity,
+  Linking,
 } from "react-native";
 // import MapView from 'react-native-maps';
 import styles from "./styles";
@@ -19,6 +22,7 @@ import { FontAwesome5 } from "@expo/vector-icons";
 import Localisation from "react-native-geocoding";
 import SaveActivity from "../SaveActivity";
 import MapModal from "../../components/MapModal";
+import CallButton from "../../components/Calling/CallButton";
 import {
   doc,
   setDoc,
@@ -33,8 +37,10 @@ import {
 } from "firebase/firestore";
 import { db } from "../../lib/firebase";
 import { async, stringify } from "@firebase/util";
+// import { getAuth } from "firebase/auth";
 
 Localisation.init("AIzaSyChyGfs7E5phymHzJZHg7W4gwFQAfKixQk");
+// const auth = getAuth();
 
 const MapScreen = ({ navigation }) => {
   const [date, dateField] = React.useState(null);
@@ -79,40 +85,27 @@ const MapScreen = ({ navigation }) => {
       console.log(error);
     }
   };
-
-  // async function Search(){
-  //   const newMarkers = [];
-  //   const querySnapshot = await getDocs(collection(db, "map"));
-  //   querySnapshot.forEach((doc) => {
-  //     newMarkers.push(<Marker
-  //       coordinate={{
-  //         longitude: doc.data().lat,
-  //         longitude: doc.data().long
-  //       }}onPress={showModal}>
-  //       <FontAwesome5 name={"running"} size={26} />
-  //     </Marker>);
-  //     return obj;
-  //   });
-  //   setMarkers(newMarkers);
-  // }
+  // console.log(auth.currentUser.uid);
 
   const [markers, setMarkers] = useState([]);
+
+  const pathObject = {
+    "Course": require("../../../assets/images/Icons/sport/Course.png"),
+    "Musculation": require("../../../assets/images/Icons/sport/Musculation.png"),
+    "Football": require("../../../assets/images/Icons/sport/Football.png"),
+  };
+  
 
   const AllMarkers = async () => {
     try {
       const querySnapshot = await getDocs(collection(db, "map"));
       const markers = [];
       querySnapshot.forEach((doc) => {
+        const activityName = doc.data().activity;
+        const path = pathObject[activityName] || pathObject.default;
+        console.log(path);
         let iconMarker = "";
-        if (doc.data().activity == "Course") {
-          iconMarker = "running";
-        } else if (doc.data().activity == "Musculation") {
-          iconMarker = "dumbbell";
-        } else if (doc.data().activity == "Football") {
-          iconMarker = "futbol";
-        } else {
-          iconMarker = "user-friends";
-        }
+        
         markers.push(
           <Marker
             key={doc.id}
@@ -122,24 +115,12 @@ const MapScreen = ({ navigation }) => {
             }}
             onPress={() => showModal(doc.id)}
           >
-            <View
-              style={{
-                maxWidth: 50,
-                borderTopLeftRadius: 15,
-                borderTopRightRadius: 15,
-                borderBottomRightRadius: 70,
-                borderBottomLeftRadius: 70,
-                padding: 10,
-                paddingBottom: 20,
-                backgroundColor: "#FFF",
-              }}
-            >
-              <FontAwesome5 name={iconMarker} size={26} />
+            <View>
+              <Image source={path} />
+              
             </View>
           </Marker>
         );
-        // console.log(doc.data().lat);
-        // console.log(doc.data().long);
       });
       setMarkers(markers);
     } catch (error) {
@@ -171,10 +152,14 @@ const MapScreen = ({ navigation }) => {
     getDocData();
   }, [docIdModal]);
 
-  function test() {
-    const myTag = <Text h1>Bonjour</Text>;
-    return myTag;
-  }
+
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     AllMarkers();
+  //   }, 15000); // call AllMarkers function every 15 seconds
+  //   return () => clearInterval(interval);
+  // }, []);
+  
 
   return (
     <View style={{ flex: 1 }}>
@@ -190,12 +175,17 @@ const MapScreen = ({ navigation }) => {
         >
           <View style={styles.backgroundModal}>
             <View style={styles.content_modal}>
-              <TouchableHighlight onPress={hideModal}>
-                <Text
+              <TouchableHighlight style={{position: 'absolute', alignSelf: "flex-end", padding: 10}} onPress={hideModal}>
+                {/* <Text
                   style={{ alignSelf: "flex-end", color: "#FFF", fontSize: 22 }}
                 >
                   X
-                </Text>
+                </Text> */}
+                <FontAwesome5
+                  name={"times"}
+                  size={22}
+                  style={{color: "#FFF"}}
+                />
               </TouchableHighlight>
               <Text style={styles.title_modal}>
                 Rendez vous de votre activité
@@ -246,11 +236,16 @@ const MapScreen = ({ navigation }) => {
                 Niveau intermediaire
               </Text>
               <View style={styles.button_modal}>
-                <Button
+                {/* <Button
                   title="Participer"
                   color="#FFF"
-                  onPress={() => navigation.navigate("Search")}
-                />
+                  onPress={() => navigation.navigate("SaveActivity")}    
+                  // hideModal()              
+                /> */}
+                <TouchableOpacity onPress={() => { navigation.navigate("SaveActivity"); hideModal(); }}>
+                  <Text style={{color: '#FFF', fontSize: 18, paddingLeft: 20, paddingRight: 20, paddingBottom: 10, paddingTop: 10}}>Je participe</Text>
+                </TouchableOpacity>
+
               </View>
             </View>
             {/* <MapModal></MapModal> */}
@@ -271,6 +266,9 @@ const MapScreen = ({ navigation }) => {
           onSubmitEditing={handleSearch}
           placeholder="Recherche"
         />
+      </View>
+      <View>
+        <CallButton/>
       </View>
     </View>
   );

@@ -21,7 +21,7 @@
 //   );
 // }
 
-import React from "react";
+import React, { useState, useEffect } from 'react';
 import { View, Text, LogBox } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
@@ -39,47 +39,27 @@ import LoginScreen from "./src/screens/Login/LoginScreen";
 LogBox.ignoreLogs(['Warning: ...']); // Ignore log notification by message
 LogBox.ignoreAllLogs();//Ignore all log notifications
 import AuthNavigator from './src/navigation/AuthNavigator';
+import Loading from "./src/components/Loading";
 
 const Stack = createNativeStackNavigator();
 
 function App() {
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    // Simulate loading data from an API
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
+  }, []);
+
+  if (isLoading) {
+    return <Loading/>;
+  }
+
   return (
     <NavigationContainer>
         <AuthNavigator />
-
-      {/* <Stack.Navigator>
-        
-        <Stack.Screen
-          name={"home"}
-          component={HomeTabNavigator}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="Destination"
-          component={DestinationSearch}
-          options={{ title: "Destination" }}
-        />
-        <Stack.Screen
-          name="Search"
-          component={SaveActivity}
-          options={{ title: "SaveActivity" }}
-        />
-        <Stack.Screen
-          name="MapScreen"
-          component={MapScreen}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="MoreInformation"
-          component={MoreInformation}
-          options={{ headerShown: true }}
-        />
-        <Stack.Screen
-          name="SettingsScreen"
-          component={SettingsScreen}
-          options={{ headerShown: true }}
-        />
-      </Stack.Navigator> */}
     </NavigationContainer>
   );
 }

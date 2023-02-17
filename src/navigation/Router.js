@@ -11,6 +11,7 @@ import AddEvents from "../screens/AddEvents";
 import SignUpScreen from "../screens/Signup";
 import LoginScreen from "../screens/Login/LoginScreen";
 import HomeTabNavigator from "./HomeTabNavigator";
+import SaveActivity from "../screens/SaveActivity";
 
 const Stack = createNativeStackNavigator();
 const OldStack = createNativeStackNavigator();
@@ -19,16 +20,11 @@ function Router() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-      {/* <Stack.Screen
-          name="LoginScreen"
-          component={LoginScreen}
-          options={{ headerShown: true }}
-        />
         <Stack.Screen
-          name="SignUp"
+          name={"SignUpScreen"}
           component={SignUpScreen}
-          options={{ headerShown: true }}
-        /> */}
+          options={{headerShown: false}}
+        />
         <Stack.Screen
           name="HomeTabNavigator"
           component={HomeTabNavigator}
@@ -58,6 +54,11 @@ function Router() {
           name="MoreInformation"
           component={MoreInformation}
           options={{ title: "MoreInformation" }}
+        />
+        <Stack.Screen
+          name="SaveActivity"
+          component={SaveActivity}
+          options={{ title: "SaveActivity" }}
         />
       </Stack.Navigator>
     </NavigationContainer>

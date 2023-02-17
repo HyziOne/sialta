@@ -34,6 +34,16 @@ const styles = StyleSheet.create({
     borderBottomRightRadius: "15",
     backgroundColor: "#FFF",
   },
+  txt_desc: {
+    color: "#000",
+    padding: 15,
+    borderRadius: "15",
+    borderTopLeftRadius: "15",
+    borderBottomLeftRadius: "15",
+    borderBottomRightRadius: "15",
+    backgroundColor: "#FFF",
+    height: 100,
+  },
   textBoxes: {
     width: '90%', 
     fontSize: 18,

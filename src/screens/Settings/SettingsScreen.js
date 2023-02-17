@@ -10,13 +10,17 @@ import {
   Pressable,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import { getAuth } from "firebase/auth";
+
 
 // class SettingsScreen extends Component {
 const SettingsScreen = () => {
+  const auth = getAuth();
   const [text, onChangeOldPassword] = React.useState(null);
   const [textbis, onChangeNewPassword] = React.useState(null);
   const [textcheck, onChangeNewPasswordCheck] = React.useState(null);
   const navigation = useNavigation();
+  const mail = auth.currentUser.email;
 
   return (
     <SafeAreaView style={styles.container}>
@@ -34,7 +38,8 @@ const SettingsScreen = () => {
 
       <Text style={styles.profil}>Profil</Text>
       <Text style={styles.container_txt}>Email :</Text>
-      <Text style={styles.container_txt}>Sofiane56240@gmail.com</Text>
+      <Text style={styles.container_txt}>{mail}</Text>
+      {/* <Text style={styles.container_txt}>Sofiane56240@gmail.com</Text> */}
       <Text style={styles.container_txt}>Reinitialiser mot de passe</Text>
 
       <Text style={styles.container_txt}>Ancien mot de passe</Text>
@@ -66,7 +71,11 @@ const SettingsScreen = () => {
       <Pressable style={styles.input}>
         <Text style={styles.input_txt}>Reinitialiser</Text>
       </Pressable>
+      <Pressable style={styles.input}>
+        <Text style={styles.input_txt} >Logout</Text>
+      </Pressable>
     </SafeAreaView>
+
   );
 };
 const styles = StyleSheet.create({

@@ -111,7 +111,7 @@ const HomeTabNavigator = (props) => {
       />
       <Tab.Screen
         name={"Profil"}
-        component={LoginScreen}
+        component={SettingsScreen}
         options={{
           headerShown: false,
           tabBarIcon: ({ color }) => (

@@ -94,6 +94,7 @@ const styles = StyleSheet.create({
     color: "#FFF",
     fontSize: 18,
     fontWeight: "600",
+    marginTop: 10,
   },
   txt_modal: {
     color: "#FFF",

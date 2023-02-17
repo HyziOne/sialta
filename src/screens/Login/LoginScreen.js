@@ -10,10 +10,12 @@ import {
   Text,
   View,
   ImageBackground,
+  Button
 } from "react-native";
 //import Icon from 'react-native-vector-icons/FontAwesome';
 import { StackScreenProps } from "@react-navigation/stack";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import firebase from 'firebase/compat/app';
 
 const auth = getAuth();
 
@@ -35,8 +37,9 @@ function LoginScreen({ navigation }) {
 
     try {
       await signInWithEmailAndPassword(auth, value.email, value.password);
+      console.log(auth.currentUser.uid);
       console.log("good");
-      navigation.navigate("MapScreen");
+     navigation.navigate("MapScreen");
     } catch (error) {
       alert("Veuillez réessayer");
       console.log("not good");
@@ -48,75 +51,52 @@ function LoginScreen({ navigation }) {
   }
 
   return (
-    <View style={{ backgroundColor: "#FFF9F0", height: "100%" }}>
+    <View style={styles.container}>
       <ImageBackground
         source={require("../../../assets/images/login/Header_login.png")}
-        style={{
-          width: "100%",
-          height: 700,
-          resizeMode: "cover",
-          position: "absolute",
-        }}
+        style={styles.headerImg}
       />
-      <View
-        style={{
-          position: "relative",
-          marginTop: 350,
-          paddingLeft: 50,
-          paddingRight: 50,
-        }}
-      >
-        <Text style={{ color: "#1F2859", fontSize: 30, fontWeight: "600" }}>
-          Connexion
-        </Text>
+      <View style={styles.subView}>
+        <Text style={styles.title}>Connexion</Text>
         <View>
           <View>
             <View>
-              <Text style={{color: '#1F2859'}}>Adresse mail</Text>
+              <Text style={styles.txtColor}>Adresse mail</Text>
               <TextInput
-                // placeholder="Email"
                 value={value.email}
                 onChangeText={(text) => setValue({ ...value, email: text })}
-                style={{ padding: 5,
-                  borderColor: '#1F2859',
-                  borderWidth: 1,
-                  borderStyle: 'solid',
-                  borderRadius: 15,
-                  marginTop: 5,
-                  marginBottom: 15}}
+                style={styles.txtInputMail}
               />
             </View>
 
             <View>
-              <Text style={{color: '#1F2859'}}>Mot de passe</Text>
+              <Text style={styles.txtColor}>Mot de passe</Text>
               <TextInput
-                // placeholder="Password"
                 onChangeText={(text) => setValue({ ...value, password: text })}
                 secureTextEntry={true}
-                style={{ padding: 5,
-                  borderColor: '#1F2859',
-                  borderWidth: 1,
-                  borderStyle: 'solid',
-                  borderRadius: 15,
-                  marginTop: 5}}
+                style={styles.txtInputPwd}
               />
             </View>
           </View>
-          <Pressable style={{ backgroundColor: '#1F2859', color: '#FFF',  borderRadius: 20 }}>
-            <Text style={{color: '#FFF',paddingBottom: 5, paddingTop: 5, fontSize: 18, textAlign: 'center'}} onPress={signIn}>Connexion</Text>
-          </Pressable>
+            <View style={{display: 'flex', position: 'relative'}}>
+              <View>
+                <Pressable style={styles.input}>
+                  <Text style={styles.connexion} onPress={signIn}>Connexion</Text>
+                </Pressable>
+              </View>
+              <View>
+                <Pressable>
+                  <Text style={styles.changeScreen} onPress={() => navigation.navigate("SignUpScreen")}>Inscription</Text>
+                </Pressable>
+              </View>
+          </View>
         </View>
-        <Text style={{color: '#1F2859', fontSize: 18, textAlign:'right'}} onPress={() => navigation.navigate("SignUp")}>Inscription</Text>
+
+
       </View>
       <ImageBackground
         source={require("../../../assets/images/login/Bottom_login.png")}
-        style={{
-          width: "100%",
-          height: 300,
-          resizeMode: "cover",
-          position: "absolute",
-          bottom: 0,
-        }}
+        style={styles.btm_img}
       />
     </View>
   );
@@ -125,16 +105,71 @@ function LoginScreen({ navigation }) {
 export default LoginScreen;
 
 const styles = StyleSheet.create({
-  icon: {
-    padding: 10,
+  container: { 
+    backgroundColor: "#FFF9F0", 
+    height: "100%" 
+  },
+  headerImg: {
+    width: "100%",
+    height: 700,
+    resizeMode: "cover",
+    position: "absolute",
+  },
+  subView: {
+    position: "relative",
+    marginTop: 350,
+    paddingLeft: 50,
+    paddingRight: 50,
+  },
+  title: {
+    color: "#1F2859", 
+    fontSize: 30, 
+    fontWeight: "600",
+  },
+  txtColor:{
+    color: '#1F2859'
   },
   input: {
-    flex: 1,
-    paddingTop: 10,
-    paddingRight: 10,
-    paddingBottom: 10,
-    paddingLeft: 0,
-    backgroundColor: "#fff",
-    color: "#424242",
+    backgroundColor: '#1F2859', 
+    color: '#FFF',  
+    borderRadius: 20,
+    marginBottom: 10,
   },
+  connexion : {
+    color: '#FFF',
+    // paddingBottom: 5, 
+    // paddingTop: 5, 
+    fontSize: 18, 
+    textAlign: 'center'
+  },
+  txtInputMail:{ 
+    padding: 5,
+    borderColor: '#1F2859',
+    borderWidth: 1,
+    borderStyle: 'solid',
+    borderRadius: 15,
+    marginTop: 5,
+    marginBottom: 15
+  },
+  txtInputPwd: { 
+    padding: 5,
+    borderColor: '#1F2859',
+    borderWidth: 1,
+    borderStyle: 'solid',
+    borderRadius: 15,
+    // marginTop: 5
+  },
+  changeScreen: {
+    color: '#1F2859', 
+    fontSize: 18, 
+    // textAlign:'right',
+    // padding: 15,
+  },
+  btm_img : {
+    width: "100%",
+    height: 300,
+    resizeMode: "cover",
+    position: "absolute",
+    bottom: 0,
+  }
 });

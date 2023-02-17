@@ -3,7 +3,7 @@ import {
   View,
   Text,
   TextInput,
-  DatePickerIOS,
+  // DatePickerIOS,
   Button,
   StyleSheet,
 } from "react-native";
@@ -50,11 +50,11 @@ const Register = () => {
         onChangeText={setPassword}
         secureTextEntry
       />
-      <DatePickerIOS
+      {/* <DatePickerIOS
         style={styles.datePicker}
         date={dob}
         onDateChange={setDOB}
-      />
+      /> */}
       {/* <Button title="Register" onPress={handleRegister} /> */}
     </View>
   );

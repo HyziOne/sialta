@@ -16,6 +16,7 @@ import { db } from "../../lib/firebase";
 import Localisation from "react-native-geocoding";
 import randomstring from "randomstring";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
+import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 
 // import DatePicker from "react-native-date-picker";
 Localisation.init("AIzaSyChyGfs7E5phymHzJZHg7W4gwFQAfKixQk");
@@ -34,6 +35,7 @@ const AddEvents = (props) => {
   const [date, setDate] = useState("");
   const [hour, setHour] = useState("");
   const [max, setMax] = useState("");
+  const [desc, setDesc] = useState("");
 
   async function CoordinateEvent() {
     const response = await Localisation.from(name);
@@ -50,6 +52,7 @@ const AddEvents = (props) => {
       date: date,
       hour: hour,
       max: max,
+      desc: desc,
     });
   }
 
@@ -77,7 +80,6 @@ const AddEvents = (props) => {
             searchPlaceholder="Sport à choisir"
           />
       </View>
-
       <Text style={styles.txt}>Date et horaire</Text>
       {/* <TextInput placeholder={lat} onChangeText={(lat) =>setLat(lat)} style={styles.textBoxes}></TextInput> */}
 
@@ -90,13 +92,77 @@ const AddEvents = (props) => {
         </View>
       </View>
       <Text style={styles.txt}>Lieu</Text>
-      <View style={styles.txt_add}>
-        <TextInput placeholder={name} onChangeText={setName} style={styles.textBoxes}></TextInput>
+      {/* <View style={styles.txt_add}> */}
+      <View style={{position: 'relative'}}>
+      <View style={{position: 'relative', width: '100%'}}>
+        <TextInput  style={styles.txt_add} placeholder={name} onChangeText={setName}></TextInput>
+        {/* <GooglePlacesAutocomplete
+          placeholder='Entrez une adresse'
+          query={{
+            key: 'AIzaSyChyGfs7E5phymHzJZHg7W4gwFQAfKixQk',
+            language: 'fr',
+          }}
+          fetchDetails={true}
+          onPress={(data, details = null) => {
+            // Récupérez les détails de l'adresse sélectionnée et mettez à jour les états lat, long et name
+            setLat(details.geometry.location.lat);
+            setLong(details.geometry.location.lng);
+            setName(data.description);
+          }}
+          styles={{
+            container: {
+              flex: 0,
+              zIndex: 1000,
+              position: 'absolute',
+              top: 50,
+              left: 0,
+              right: 0,
+              backgroundColor: 'white',
+              borderWidth: 1,
+              borderColor: '#C0C0C0',
+              borderRadius: 5,
+              marginHorizontal: 20,
+            },
+            textInputContainer: {
+              backgroundColor: 'transparent',
+              borderTopWidth: 0,
+              borderBottomWidth: 0,
+            },
+            textInput: {
+              marginLeft: 0,
+              marginRight: 0,
+              height: 38,
+              color: '#5d5d5d',
+              fontSize: 16,
+              borderBottomWidth: 1,
+              borderBottomColor: '#C0C0C0',
+            },
+            listView: {
+              backgroundColor: 'white',
+              borderWidth: 1,
+              borderColor: '#C0C0C0',
+              marginHorizontal: 20,
+              marginTop: 10,
+              borderRadius: 5,
+            },
+          }}
+          listUnderlayColor='white'
+        /> */}
 
-        <Button title="Publier" onPress={CoordinateEvent} />
+        {/* <Button title="Publier" onPress={CoordinateEvent} /> */}
+      </View>
       </View>
         <Text style={styles.txt}>Nombre de participants</Text>
         <TextInput placeholder={max} onChangeText={setMax} style={styles.txt_add}></TextInput>
+        <View>
+          <Text style={styles.txt}>Description</Text>
+          <View style={styles.txt_desc}>
+            <TextInput onChangeText={setDesc}></TextInput>
+          </View>
+        </View>
+        <View>
+          <Button color="#FFF" title="Publier" onPress={CoordinateEvent} />
+        </View>
     </View>
   );
 };
