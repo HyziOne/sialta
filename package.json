@@ -18,6 +18,7 @@
     "@react-navigation/native-stack": "^6.9.0",
     "@react-navigation/stack": "^6.3.1",
     "@reduxjs/toolkit": "^1.9.2",
+    "eas-cli": "^3.6.0",
     "expo": "^47.0.13",
     "expo-dev-client": "~2.0.1",
     "expo-location": "~15.0.1",
