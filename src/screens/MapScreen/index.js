@@ -160,6 +160,12 @@ const MapScreen = ({ navigation }) => {
   //   return () => clearInterval(interval);
   // }, []);
   
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     AllMarkers();
+  //   }, 15000); // call AllMarkers function every 15 seconds
+  //   return () => clearInterval(interval);
+  // });
 
   return (
     <View style={{ flex: 1 }}>

@@ -10,7 +10,9 @@ import {
   Text,
   View,
   ImageBackground,
-  Button
+  Button, 
+  KeyboardAvoidingView, 
+  Platform
 } from "react-native";
 //import Icon from 'react-native-vector-icons/FontAwesome';
 import { StackScreenProps } from "@react-navigation/stack";
@@ -51,7 +53,13 @@ function LoginScreen({ navigation }) {
   }
 
   return (
+    // <KeyboardAvoidingView 
+    //   style={{flex: 1}}
+    //   behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+    //   // behavior={'height'}
+    // >
     <View style={styles.container}>
+      <View style={{position: 'relative', zIndex: 99999999, height: '100%'}}>
       <ImageBackground
         source={require("../../../assets/images/login/Header_login.png")}
         style={styles.headerImg}
@@ -92,13 +100,17 @@ function LoginScreen({ navigation }) {
           </View>
         </View>
 
-
       </View>
-      <ImageBackground
-        source={require("../../../assets/images/login/Bottom_login.png")}
-        style={styles.btm_img}
-      />
+      </View>
+      <View>
+        <ImageBackground
+          source={require("../../../assets/images/login/Bottom_login.png")}
+          style={styles.btm_img}
+        />
+      </View>
+
     </View>
+    // </KeyboardAvoidingView>
   );
 }
 

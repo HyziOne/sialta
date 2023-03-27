@@ -78,10 +78,10 @@ const styles = StyleSheet.create({
   txt_add: {
     color: "#000",
     padding: 15,
-    borderRadius: "15",
-    borderTopLeftRadius: "15",
-    borderBottomLeftRadius: "15",
-    borderBottomRightRadius: "15",
+    borderRadius: 15,
+    // borderTopLeftRadius: "15",
+    // borderBottomLeftRadius: "15",
+    // borderBottomRightRadius: "15",
     backgroundColor: "#FFF",
   },
   textBoxes: {

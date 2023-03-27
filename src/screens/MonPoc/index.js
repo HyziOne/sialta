@@ -31,7 +31,7 @@ const MonPoc = ({ navigation }) => {
           position: "absolute",
           right: -110,
           top: 100,
-          zIndex: "-1",
+          zIndex: -1,
         }}
       />
 

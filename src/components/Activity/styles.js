@@ -22,10 +22,11 @@ const styles = StyleSheet.create({
   container: {
     margin: 20,
     backgroundColor: "#4AA5B0",
-    borderTopRightRadius: "15",
-    borderTopLeftRadius: "15",
-    borderBottomLeftRadius: "15",
-    borderBottomRightRadius: "15",
+    borderRadius: 15,
+    // borderTopRightRadius: "15",
+    // borderTopLeftRadius: "15",
+    // borderBottomLeftRadius: "15",
+    // borderBottomRightRadius: "15",
     flexDirection: "row",
   },
   type: {

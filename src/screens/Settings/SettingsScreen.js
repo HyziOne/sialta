@@ -8,6 +8,7 @@ import {
   TextInput,
   SafeAreaView,
   Pressable,
+  ScrollView,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { getAuth } from "firebase/auth";
@@ -24,6 +25,8 @@ const SettingsScreen = () => {
 
   return (
     <SafeAreaView style={styles.container}>
+    <ScrollView>
+
       <TouchableHighlight
         style={[
           styles.profileImgContainer,
@@ -74,8 +77,8 @@ const SettingsScreen = () => {
       <Pressable style={styles.input}>
         <Text style={styles.input_txt} >Logout</Text>
       </Pressable>
+    </ScrollView>
     </SafeAreaView>
-
   );
 };
 const styles = StyleSheet.create({

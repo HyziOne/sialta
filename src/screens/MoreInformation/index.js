@@ -34,7 +34,7 @@ const MoreInformation = (props) => {
           position: "absolute",
           right: -110,
           top: 100,
-          zIndex: "-1",
+          zIndex: -1,
         }}
       />
 
@@ -95,9 +95,7 @@ const MoreInformation = (props) => {
       />
       <Text style={styles.subtitle}>Description :</Text>
       <Text style={styles.txt}>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. ellentesque
-        molestie lectus diam. Sed luctus mi est, at tincidunt lorem lobortis sit
-        amet. In dapibus odio at turpis tempus ultrices. Proin.
+        Activité en plein air.
       </Text>
 
       <Text

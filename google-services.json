@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "679005005065",
+    "project_id": "sialta-71961",
+    "storage_bucket": "sialta-71961.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:679005005065:android:d818b25c700ab0ac8a1fd8",
+        "android_client_info": {
+          "package_name": "com.company.sialta"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "679005005065-ip00j35jesvu3f84suci28789un1e3uv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBqM7fb_2nv2zwGPzf02Dyp33tvooSvETA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "679005005065-5ulbqt2hjaopc8o8rnii6t1qsfg1gpqm.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "679005005065-gtm03f3gj9857bge61gdi67j1asic3c6.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.sialta.app"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

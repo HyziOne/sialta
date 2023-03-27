@@ -92,10 +92,11 @@ const MapScreen = ({ navigation }) => {
               backgroundColor: "#4AA5B0",
               padding: 20,
               color: "#FFF",
-              borderTopRightRadius: "15",
-              borderTopLeftRadius: "15",
-              borderBottomLeftRadius: "15",
-              borderBottomRightRadius: "15",
+              borderRadius: 15,
+              // borderTopRightRadius: "15",
+              // borderTopLeftRadius: "15",
+              // borderBottomLeftRadius: "15",
+              // borderBottomRightRadius: "15",
             }}
           >
             <TouchableHighlight onPress={hideModal}>

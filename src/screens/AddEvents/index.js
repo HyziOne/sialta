@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   TextInput,
   Button,
+  ScrollView
 } from "react-native";
 import styles from "./styles";
 import { useNavigation } from "@react-navigation/native";
@@ -65,6 +66,7 @@ const AddEvents = (props) => {
 
   return (
     <View style={styles.container}>
+       <ScrollView>
       <Text style={styles.titre}>Créer ton evenement</Text>
       <Text>{location.lng}</Text>
       <Text style={styles.txt}>Ton sport</Text>
@@ -163,6 +165,7 @@ const AddEvents = (props) => {
         <View>
           <Button color="#FFF" title="Publier" onPress={CoordinateEvent} />
         </View>
+       </ScrollView>
     </View>
   );
 };
