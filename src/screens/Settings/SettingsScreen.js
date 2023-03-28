@@ -11,7 +11,10 @@ import {
   ScrollView,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import { getAuth } from "firebase/auth";
+// import { getAuth } from "firebase/auth";
+// import { getAuth, signOut } from "firebase/auth";
+import { getAuth, signOut, updatePassword, reauthenticateWithCredential, EmailAuthProvider } from "firebase/auth";
+
 
 
 // class SettingsScreen extends Component {
@@ -22,6 +25,35 @@ const SettingsScreen = () => {
   const [textcheck, onChangeNewPasswordCheck] = React.useState(null);
   const navigation = useNavigation();
   const mail = auth.currentUser.email;
+
+  const handleLogout = async () => {
+    try {
+      await signOut(auth);
+      navigation.navigate("LoginScreen"); // Remplacez "Login" par le nom de l'écran de connexion de votre application
+    } catch (error) {
+      console.error("Erreur lors de la déconnexion :", error);
+    }
+  };  
+  const handlePasswordReset = async () => {
+    if (text && textbis && textcheck) {
+      if (textbis === textcheck) {
+        try {
+          const credential = EmailAuthProvider.credential(mail, text);
+          await reauthenticateWithCredential(auth.currentUser, credential);
+          await updatePassword(auth.currentUser, textbis);
+          alert("Mot de passe mis à jour avec succès !");
+        } catch (error) {
+          console.error("Erreur lors de la mise à jour du mot de passe :", error);
+          alert("Erreur lors de la mise à jour du mot de passe. Veuillez vérifier votre ancien mot de passe et réessayer.");
+        }
+      } else {
+        alert("Les nouveaux mots de passe ne correspondent pas. Veuillez vérifier et réessayer.");
+      }
+    } else {
+      alert("Veuillez remplir tous les champs.");
+    }
+  };
+  
 
   return (
     <SafeAreaView style={styles.container}>
@@ -71,12 +103,20 @@ const SettingsScreen = () => {
         secureTextEntry={true}
       />
       {/* <Pressable style={styles.input}onPress={() => navigation.navigate('SettingsScreen')}> */}
-      <Pressable style={styles.input}>
+      {/* <Pressable style={styles.input}>
+        <Text style={styles.input_txt}>Reinitialiser</Text>
+      </Pressable> */}
+      <Pressable style={styles.input} onPress={handlePasswordReset}>
         <Text style={styles.input_txt}>Reinitialiser</Text>
       </Pressable>
-      <Pressable style={styles.input}>
+
+      {/* <Pressable style={styles.input}>
         <Text style={styles.input_txt} >Logout</Text>
+      </Pressable> */}
+      <Pressable style={styles.input} onPress={handleLogout}>
+        <Text style={styles.input_txt}>Déconnexion</Text>
       </Pressable>
+
     </ScrollView>
     </SafeAreaView>
   );
