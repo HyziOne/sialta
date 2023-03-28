@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
   date_side: {
     marginTop: 30,
     marginLeft: "5%",
-    width: "20%",
+    width: "25%",
   },
   container: {
     margin: 20,
