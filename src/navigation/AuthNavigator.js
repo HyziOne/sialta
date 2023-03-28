@@ -9,6 +9,7 @@ import DestinationSearch from '../screens/DestinationSearch';
 import MoreInformation from '../screens/MoreInformation';
 import AddEvents from '../screens/AddEvents';
 import SaveActivity from '../screens/SaveActivity';
+import NotificationScreen from '../screens/Notification/NotificationScreen';
 
 const Stack = createStackNavigator();
 // Navigator, Screen, Group
@@ -53,11 +54,11 @@ function AuthNavigator() {
           component={AddEvents}
           options={{ title: "AddEvents" }}
         />
-        {/* <Stack.Screen
-          name="MapScreen"
-          component={MapScreen}
-          options={{ title: "MapScreen" }}
-        /> */}
+        <Stack.Screen
+          name="Notification"
+          component={NotificationScreen}
+          options={{ title: "Notification" }}
+        />
         <Stack.Screen
           name="MoreInformation"
           component={MoreInformation}
@@ -68,6 +69,7 @@ function AuthNavigator() {
           component={SaveActivity}
           options={{ title: "Vos activités" }}
         />
+        
     </Stack.Navigator>
   );
 }

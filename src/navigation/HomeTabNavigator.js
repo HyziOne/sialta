@@ -16,6 +16,7 @@ import Login from "../screens/Login";
 import LoginScreen from "../screens/Login/LoginScreen.js";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { NavigationContainer } from "@react-navigation/native";
+import NotificationScreen from "../screens/Notification/NotificationScreen";
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -57,7 +58,7 @@ const HomeTabNavigator = (props) => {
       <Tab.Screen
         name={"Messages"}
         // component={DestinationSearch}
-        component={MoreInformation}
+        component={NotificationScreen}
         options={{
           headerShown: false,
           tabBarIcon: ({ color }) => (

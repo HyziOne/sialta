@@ -12,6 +12,7 @@ import SignUpScreen from "../screens/Signup";
 import LoginScreen from "../screens/Login/LoginScreen";
 import HomeTabNavigator from "./HomeTabNavigator";
 import SaveActivity from "../screens/SaveActivity";
+import NotificationScreen from "../screens/Notification/NotificationScreen";
 
 const Stack = createNativeStackNavigator();
 const OldStack = createNativeStackNavigator();
@@ -59,6 +60,11 @@ function Router() {
           name="SaveActivity"
           component={SaveActivity}
           options={{ title: "SaveActivity" }}
+        />
+         <Stack.Screen
+          name="NotificationScreen"
+          component={NotificationScreen}
+          options={{ title: "Notification" }}
         />
       </Stack.Navigator>
     </NavigationContainer>
